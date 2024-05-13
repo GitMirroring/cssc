@@ -68,7 +68,7 @@ libgoogletest_a_SOURCES = \
         googletest/googletest/src/gtest_main.cc
 
 # We ship all the googletest source in the distribution tarball.
-EXTRA_DIST = \
+EXTRA_DIST += \
 	googletest/.travis.yml  \
 	googletest/CMakeLists.txt  \
 	googletest/README.md  \
