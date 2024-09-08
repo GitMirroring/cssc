@@ -44,6 +44,7 @@ static const char filever[] = "$Id: sccs.c,v 1.44 2007/12/19 00:21:14 jay Exp $"
 
 #include <config.h>
 
+#include <stdbool.h>
 #include <stdio.h>
 #include <locale.h>
 #include <string.h>
@@ -268,9 +269,9 @@ static const char filever[] = "$Id: sccs.c,v 1.44 2007/12/19 00:21:14 jay Exp $"
 
 /****************  End of Configuration Information  ****************/
 
-typedef char bool;
-#define TRUE    1
-#define FALSE   0
+
+#define TRUE    true		/* from stdbool.h */
+#define FALSE   false		/* from stdbool.h */
 
 #define bitset(bit, word)       ((bool) ((bit) & (word)))
 
