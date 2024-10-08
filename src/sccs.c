@@ -89,6 +89,7 @@ static const char filever[] = "$Id: sccs.c,v 1.44 2007/12/19 00:21:14 jay Exp $"
 #define _PATH_SCCSPRT   ("prt")
 #define _PATH_SCCSRMDEL ("rmdel")
 #define _PATH_SCCSCDC   ("cdc")
+#define _PATH_SCCSSACT  ("sact")
 #define _PATH_SCCSVAL   ("val")
 #define _PATH_SCCSWHAT  ("what")
 #undef _PATH_TMP
@@ -330,6 +331,7 @@ const struct sccsprog SccsProg[] =
   {"prs", PROG, 0, _PATH_SCCSPRS, 0 },
   {"prt", PROG, 0, _PATH_SCCSPRT, 0 },
   {"rmdel", PROG, REALUSER, _PATH_SCCSRMDEL, 0 },
+  {"sact", PROG, 0, _PATH_SCCSSACT, 0 },
   {"val", PROG, 0, _PATH_SCCSVAL, 0 },
   {"what", PROG, NO_SDOT, _PATH_SCCSWHAT, 0 },
   {"sccsdiff", PROG, REALUSER, _PATH_SCCSDIFF, 0 },

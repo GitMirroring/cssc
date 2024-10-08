@@ -333,7 +333,7 @@ BitKeeper files.  Use this option with @emph{extreme} care.
 @end table
 
 
-@node Flags, Modification Request Numbers, ,admin
+@node Flags, Modification Request Numbers, Admin Options, admin
 @subsection Flags
 @cindex Flags
 
@@ -1125,7 +1125,7 @@ that have been created since last week.
 Include even removed deltas in the output.  Removed deltas have a type
 "R", as output by the :DT: keyword.
 
-@item -c@var{[cc]YYMMDDHHMMSS}
+@item -c@code{[cc]YYMMDDHHMMSS}
 @cindex Year 2000
 Specifies the time of the ``cutoff''.  When this option is given, the
 delta selected by @code{prs} is the last one checked in before the
@@ -1480,7 +1480,7 @@ delta information is printed.
 @item -e
 ``Everything''; Means the same as @samp{-i -u -f -t -d}.
 
-@item -c@var{[cc]YYMMDDHHMMSS}
+@item -c@code{[cc]YYMMDDHHMMSS}
 @cindex Year 2000
 Specifies the time of the ``cutoff''.  When this option is given,
 @code{prt} stops printing delta information when it reaches a @sc{sid}
@@ -1510,7 +1510,7 @@ Print the flags of the @sc{sccs} file (@pxref{Flags}).
 @item -i
 Print the serial numbers of included, excluded, and ignored deltas.
 
-@item -r@var{[cc]YYMMDDHHMMSS}
+@item -r@code{[cc]YYMMDDHHMMSS}
 Specifies a cutoff, as with the @option{-c} option, but with the opposite
 sense; that is, nothing is printed for deltas that are more recent than
 the indicated time.
