@@ -212,3 +212,4 @@ wchar.in.h
 /windows-timedrwlock.h
 /windows-tls.c
 /windows-tls.h
+/aligned_alloc.c
