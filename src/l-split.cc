@@ -163,7 +163,7 @@ split_string(std::string::const_iterator first, std::string::const_iterator last
 	     char delimiter, std::vector<std::string>* output,
 	     std::string::size_type field_limit)
 {
-  bool empty;			// when true, current is empty
+  bool empty = false;			// when true, current is empty
   std::string current;
   current.reserve(last - first);
   auto emit = [output, &current, &field_limit]()
