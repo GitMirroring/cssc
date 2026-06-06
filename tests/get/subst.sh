@@ -33,7 +33,7 @@ docommand "stderr format" "${vg_get} -p $s" 0 "IGNORE" "1.1\n83 lines\n"
 expands_to () {
     # $1 -- format
     # $2 -- expansion
-docommand "%${1}%" "egrep \"^_${1}_ \" <${output}" 0 "$2" ""
+docommand "%${1}%" "grep -E \"^_${1}_ \" <${output}" 0 "$2" ""
 }
 
 # Examine each of the things formatted into the file and
