@@ -57,7 +57,7 @@ static const char filever[] = "$Id: sccs.c,v 1.44 2007/12/19 00:21:14 jay Exp $"
 #include <sys/stat.h>
 #include <signal.h>             /* TODO: consider using sigaction(). */
 #include <errno.h>              /* TODO: same as in parent directory. */
-#include <pwd.h>                /* getpwuid() */
+#include <pwd.h>                /* getpwuid(), getpwnam() */
 #ifdef HAVE_GRP_H
 #include <grp.h>		/* setgroups() */
 #endif
@@ -649,7 +649,6 @@ main (int argc, char **argv)
   if (p != NULL && p[0] != '\0')
     {
       register struct passwd *pw;
-      extern struct passwd *getpwnam();
       char buf[FBUFSIZ];
 
       if (p[0] == '/')
