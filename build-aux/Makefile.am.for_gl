@@ -16,6 +16,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
+## This file was copied from build-aux/Makefile.am.for_gl
+## by the bootstrap.conf script.
+##
 ## Process this file with automake to generate "Makefile.in"
 ##
 ## Since it doesn't start with "##", the following line will be copied
