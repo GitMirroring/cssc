@@ -1,5 +1,5 @@
 #! /bin/sh
-# eightbit.sh:  Testing for 8-bit clean operation 
+# eightbit.sh:  Testing for 8-bit clean operation
 
 # Import common functions & definitions.
 . ../common/test-common
@@ -13,7 +13,7 @@ then
 else
     echo "Skipping these tests -- no binary file support."
     exit 0
-fi 
+fi
 
 
 g=8bit.txt
@@ -37,36 +37,30 @@ cleanup
 # At the moment, just create an SCCS file from 8-bit characters and
 # make sure the checksum is OK.
 
-# If the next line is incomprehensible to you, that's OK. 
+# If the next line is incomprehensible to you, that's OK.
 # It contains ISO-8859-1 characters.  But the important thing
 # is that they are outside the range 0...127.
 remove $g
-echo "garçon mañana áóäæèêëìñåòôùé" >$g
+cp example.latin1.txt $g
 docommand a1 "${vg_admin} -i$g $s" 0 IGNORE IGNORE
-docommand a2 "${vg_get} -p $s" 0 "garçon mañana áóäæèêëìñåòôùé\n" IGNORE
+docommand --stdout_is_file a2 "${vg_get} -p $s" 0 example.latin1.txt IGNORE
 
 cp umsp_s s.umsp.txt || miscarry 'failed to stage s.umsp.txt'
 
-docommand a4 "${vg_get} -p s.umsp.txt" 0 "garçon mañana áóäæèêëìñåòôùé\n" IGNORE
+docommand --stdout_is_file a4 "${vg_get} -p s.umsp.txt" 0 example.latin1.txt IGNORE
 
 
-## We must be able to manipulate normally files containing 
+## We must be able to manipulate normally files containing
 ## the ISO 8859 character whose code is 255 (y-umlaut).
 ## EOF is often (-1) and if a char has carelessly been used
 ## to hold the result of a getchar(), we may detect y-umlaut
 ## as EOF.  That would be a bug.
 
-echo_nonl a5...
-if cp char255.input char255.txt
-then
-    echo passed
-else
-    miscarry 'failed to stage char255.txt'
-fi
+copy "copy_input_255" char255.input char255.txt
 
 remove s.char255.txt
 docommand a6 "${vg_admin} -ichar255.txt s.char255.txt" 0 IGNORE IGNORE
-docommand a7 "${vg_get} -k -p s.char255.txt" 0 "ÿ\n" "1.1\n1 lines\n"
+docommand --stdout_is_file a7 "${vg_get} -k -p s.char255.txt" 0 char255.txt "1.1\n1 lines\n"
 
 cleanup
 success

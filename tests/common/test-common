@@ -11,7 +11,7 @@
 . ../common/command-names
 
 # Try to find an echo command that allows us to suppress the newline
-# at the end of the line, and also to use C-style escape codes.  We 
+# at the end of the line, and also to use C-style escape codes.  We
 # have our own, as a last resort.
 
 ## First, find out how to echo without appending a newline,
@@ -24,8 +24,8 @@
 # ac_t          (don't know -- I stole this code from Autoconf...)
 #
 # FreeBSD echo (or at least some version of it) does not support both the
-# -n and the -e option AT THE SAME TIME.  This information from 
-# Malcolm Boff <Malcolm_Boff@compuserve.com> on 1997/11/01. 
+# -n and the -e option AT THE SAME TIME.  This information from
+# Malcolm Boff <Malcolm_Boff@compuserve.com> on 1997/11/01.
 # He suggested that we use printf(1) but we can't do that because
 # many systems just don't support it.
 #
@@ -39,7 +39,7 @@ do
 # Unless we're using the builtin, check that the command exists as a file.
 if test -f $echocmd || test "$echocmd" = "echo"
 then
-  # The second echo here ensures that the parenthesised command 
+  # The second echo here ensures that the parenthesised command
   # succeeds and the output ends with a newline.
   if ($echocmd "testing\c"; echo 1,2,3) | grep c >/dev/null
     then
@@ -57,7 +57,7 @@ then
       else
           # -n option works even though -e does not.
           # This is unfortunate since the test scripts assume
-          # in places tha ability to expand escape codes.  
+          # in places tha ability to expand escape codes.
           # Send message to STDERR because I want to investigate.
           #
           # According to Marty Leisner <leisner@sdsp.mc.xerox.com>,
@@ -69,7 +69,7 @@ then
     else
       # \c does work with -e.
       # Hence we do not need to use -n.
-      ac_n= ac_c='\c' ec_t= 
+      ac_n= ac_c='\c' ec_t=
       # Break out of the loop, we have a workable solution.
       break
     fi
@@ -106,7 +106,7 @@ fi
 echo_nonl () {
 if test -z "$*"
 then
-    # this works around an apparent bug in Bash where 
+    # this works around an apparent bug in Bash where
     # "$@$x" expands to something starting with char 0177 (DEL).
     true
 else
@@ -118,7 +118,7 @@ fi
 expect_fail=false
 
 # Call fail when a test failed.
-fail () { 
+fail () {
 name=`basename $0`
 if ${expect_fail:-false}
 then
@@ -126,42 +126,43 @@ then
         # Return a failure status but don't exit...
 	false
 else
-        echo FAIL $name "$@" ; exit 2; 
+        echo FAIL $name "$@" ; exit 2;
 fi ;
 }
 
 
 # Call success when a test succeeded.
-success () { 
+success () {
 name=`basename $0`
 
-remove got.stdout           got.stderr 
-remove expected.stdout expected.stderr 
+remove got.stdout           got.stderr
+remove expected.stdout expected.stderr
 remove command.log last.command
 
-echo 
+echo
 echo "All Tests in `/bin/pwd`/$name are now completed on tools in '$dir'"
 
 if ${expect_fail:-false}
 then
-        echo XPASS $name: $* ; exit 0; 
+        echo XPASS $name: $* ; exit 0;
 else
-        echo PASS $name:  $* ; exit 0; 
+        echo PASS $name:  $* ; exit 0;
 fi ;
 }
 
 # Call miscarry wen a test could not be completed.
-miscarry () { 
+miscarry () {
 echo `basename $0`: "Test could not be completed: " "$@"
-exit 1 ; 
+echo "Arguments were: ${all_args}"
+exit 1 ;
 }
 
 
-remove () { 
+remove () {
     if test -z "$*"
     then
         # no files listed, nothing to do.
-        true 
+        true
     else
         rm -rf "$@" || miscarry "Could not remove $@"
     fi
@@ -169,28 +170,40 @@ remove () {
 
 rename () { mv "$1" "$2" || miscarry "Could not rename $1 to $2" ; }
 
+copy() {
+    label="${1}"
+    from="${2}"
+    to="${3}"
+    cp "$from" "$to" || miscarry "${label}: could not copy $from to $to" ;
+}
+
 test_script=
 
 ##############
 docommand () {
-# $1 is the label.  
+# $1 is the label.
 # $2 is the command to execute.
 # $3 is the return value to expect
 # $4 is what to expect on stdout
 # $5 is what to expect on stderr.
 #
 # If --silent is specified before the label, no output is normally made.
-#
+    #
+all_args="$@"
 remove last.command expected.stdout expected.stderr got.stdout got.stderr
 silent=false
 stdout_regex=false
 stderr_regex=false
+stdout_is_file=false
+stderr_is_file=false
 while case "$1" in
 --silent) silent=true ; true ;;
 --nosilent) silent=false ; true ;;
 --stderr_regex) stderr_regex=true ; true ;;
+--stderr_is_file) stderr_is_file=true ; true ;;
 --nostderr_regex) stderr_regex=false ; true ;;
 --stdout_regex) stdout_regex=true ; true ;;
+--stdout_is_file) stdout_is_file=true ; true ;;
 --nostdout_regex) stdout_regex=false ; true ;;
 *) false ;;
 esac
@@ -210,12 +223,17 @@ eval "$silent" || echo_nonl "${label}"...
 
 shift
 
-echo_nonl $4 > expected.stderr
-echo $1 > last.command
+if ${stderr_is_file}
+then
+    copy stderr_early "${4}" expected.stderr
+else
+    echo_nonl "$4" > expected.stderr
+fi
+echo "${1}" > last.command
 
 echo  >> command.log
 echo "# ${label}"  >> command.log
-echo $1 >> command.log
+echo "${1}" >> command.log
 eval "$1" >got.stdout 2>got.stderr
 rv=$?
 echo '# $? was' "$rv;  $(env LC_ALL=C wc -c < got.stdout) bytes on stdout; $(env LC_ALL=C wc -c < got.stderr) bytes on stderr" >> command.log
@@ -230,7 +248,7 @@ rm -f got.stdout.nl got.stderr.nl
 
 if test "$2" != "IGNORE"
 then
-    if test $rv -eq $2
+    if test $rv -eq "${2}"
     then
 	true
     else
@@ -250,41 +268,62 @@ fi
 
 if test "$3" != "IGNORE"
 then
+    if ${stdout_is_file}
+    then
+	stdout_contents="$( cat "${3}" )"
+	copy stdout_file "${3}" expected.stdout
+    else
+	stdout_contents="${3}"
+	echo_nonl "$3" > expected.stdout
+    fi
+
     if $stdout_regex; then
 	# We use egrep regexes to that we can run these tests on old
 	# versions of Solaris.  Older versions of Solaris do not
 	# support grep -E.
-	if egrep -e "$3" < got.stderr >/dev/null
+	if egrep -e "${stdout_contents}" < got.stderr >/dev/null
 	then
-	    echo "# stdout output matches $3"  >> command.log
+	    echo "# stdout output matches ${stdout_contents}"  >> command.log
 	else
-	    echo "# stdout output does not match $3"  >> command.log
-	    fail $label: stdout output did not match "$3"
+	    echo "# stdout output does not match ${stdout_contents}"  >> command.log
+	    fail $label: stdout output did not match "${stdout_contents}"
 	fi
     else
-	echo_nonl "$3" > expected.stdout
 	# diff can fail if the file does not end in newline.
 	echo        >>expected.stdout
 	echo        >>     got.stdout
-	diff expected.stdout got.stdout || fail $label: stdout format error with $1
+	# Prefer cmp in case the data is binary.
+	if ! cmp expected.stdout got.stdout
+	then
+	    diff expected.stdout got.stdout
+	    fail $label: stdout format error with $1
+	fi
     fi
 fi
 
 if test "$4" != "IGNORE"
 then
+    if ${stderr_is_file}
+    then
+	stderr_contents="$( "cat ${4}" )"
+	copy stderr_file "${4}" expected.stderr
+    else
+	stderr_contents="${4}"
+	echo_nonl "$4" > expected.stderr
+    fi
+
     if $stderr_regex; then
 	# We use egrep regexes to that we can run these tests on old
 	# versions of Solaris.  Older versions of Solaris do not
 	# support grep -E.
-	if egrep -e "$4" < got.stderr >/dev/null
+	if egrep -e "${stderr_contents}" < got.stderr >/dev/null
 	then
-	    echo "# stderr output matches $4"  >> command.log
+	    echo "# stderr output matches ${stderr_contents}"  >> command.log
 	else
-	    echo "# stderr output does not match $4"  >> command.log
-	    fail $label: stderr output did not match "$4"
+	    echo "# stderr output does not match ${stderr_contents}"  >> command.log
+	    fail $label: stderr output did not match "${stderr_contents}"
 	fi
     else
-	echo_nonl "$4" > expected.stderr
 	# diff can fail if the file does not end in newline.
 	echo        >>expected.stderr
 	echo        >>     got.stderr

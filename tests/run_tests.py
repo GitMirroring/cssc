@@ -28,22 +28,30 @@ class colour:
 
 def spawn(col, label, argv):
     print("%-25s... " % (label,), end="")
-    p = subprocess.Popen(argv, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    out, error_messages = p.communicate()
+    command_line_for_error_reporting=" ".join(argv)
+    try:
+        p = subprocess.Popen(argv, text=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    except Exception as e:
+        e.add_note(f"failed to run {command_line_for_error_reporting}")
+        raise
+    try:
+        out, error_messages = p.communicate()
+    except Exception as e:
+        e.add_note(f"failed while capturing stdout/stderr of command {command_line_for_error_reporting}")
+        raise
     result = p.returncode
     if result == 0:
         col.in_green("PASS")
     else:
         col.in_red("FAIL")
-        print(out, file=sys.stdout)
-        print(errs, file=sys.stderr)
-    return result, error_messages
+        sys.stdout.buffer.write(out)
+        sys.stderr.buffer.write(error_messages)
+    return result
 
 def run_one_test(col, dirname, name):
     label = "%s/%s" % (dirname, name)
     if name.endswith(".sh"):
-        result, _ = spawn(col, label, ["sh", name])
-        return result
+        return spawn(col, label, ["sh", name])
     else:
         raise ValueError(f"{name} is not a shell script")
 
