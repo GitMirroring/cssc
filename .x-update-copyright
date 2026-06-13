@@ -2,3 +2,6 @@ AUTHORS
 THANKS
 ChangeLog.3
 auxfiles/CSSC.spec.in
+docs/sccs.me
+sccs-cgi/sccs.cgi
+sccs-cgi/sccs.cgi.text

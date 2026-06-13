@@ -1,7 +1,7 @@
 #! /bin/sh
 # Generate the ChangeLog for CSSC.
 
-# Copyright (C) 2015, 2016, 2017, 2018, 2019, 2024 Free Software
+# Copyright (C) 2015, 2016, 2017, 2018, 2019, 2024, 2026 Free Software
 # Foundation, Inc.
 # Written by James Youngman.
 #
