@@ -34,5 +34,5 @@ exclude_file_name_regexp--sc_codespell = ^po/.*.po|doc/.*.pdf$$|[.](binary|latin
 # Configuration for sc_codespell
 codespell_ignore_words_list = ""
 cssc_codespell_inhibit_color = --disable-colors
-codespell_extra_args = --ignore-words $(srcdir)/$(_build-aux)/codespell.ignore-words.txt $(cssc_codespell_inhibit_color)
-
+cssc_codespell_exclusion_file = $(srcdir)/$(_build-aux)/codespell.line-exclusions.txt
+codespell_extra_args = --ignore-words $(srcdir)/$(_build-aux)/codespell.ignore-words.txt $(cssc_codespell_inhibit_color) --exclude-file=$(cssc_codespell_exclusion_file)
