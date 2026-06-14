@@ -182,28 +182,28 @@ copy() {
 	echo "${label}: copy(): wrong number of arguments (expected 3, got $#)" >&2
 	return 1
     fi
-    label="${1}"
-    from="${2}"
-    to="${3}"
+    copy_label="${1}"
+    copy_from="${2}"
+    copy_to="${3}"
     # In case ${to} is a symlink to something we don't want to modify,
     # ensure that cp will create ${to} instead of overwriting any
     # existing contents.
-    rm -f -- "${to}"
-    if cp  -- "${from}" "${to}"
+    rm -f -- "${copy_to}"
+    if cp  -- "${copy_from}" "${copy_to}"
     then
 	# By default cp will use the mode of ${from} when creating
 	# ${to}.  This can mean ${to} is created as a read-only file
 	# when the source tree is read-only (e.g. during 'make
 	# distcheck').  Our tests assume that the copied file is
 	# writable so we need to ensure that's the case.
-	if chmod u+w -- "${to}"
+	if chmod u+w -- "${copy_to}"
 	then
 	    return 0
 	fi
-	miscarry "${label}: failed to make ${to} writable"
+	miscarry "${copy_label}: failed to make ${copy_to} writable"
 	return 1
     fi
-    miscarry "${label}: failed to copy ${from} to ${to}"
+    miscarry "${copy_label}: failed to copy ${copy_from} to ${copy_to}"
     return 1
 }
 
@@ -316,7 +316,7 @@ then
 	    echo "# stdout output matches ${stdout_contents}"  >> command.log
 	else
 	    echo "# stdout output does not match ${stdout_contents}"  >> command.log
-	    fail $label: stdout output did not match "${stdout_contents}"
+	    fail "$label: stdout output did not match ${stdout_contents}"
 	fi
     else
 	# diff can fail if the file does not end in newline.
@@ -326,7 +326,7 @@ then
 	if ! cmp expected.stdout got.stdout
 	then
 	    diff expected.stdout got.stdout
-	    fail $label: stdout format error with $1
+	    fail "$label: stdout format error with $1"
 	fi
     fi
 fi
@@ -351,13 +351,13 @@ then
 	    echo "# stderr output matches ${stderr_contents}"  >> command.log
 	else
 	    echo "# stderr output does not match ${stderr_contents}"  >> command.log
-	    fail $label: stderr output did not match "${stderr_contents}"
+	    fail "$label: stderr output did not match ${stderr_contents}"
 	fi
     else
 	# diff can fail if the file does not end in newline.
 	echo        >>expected.stderr
 	echo        >>     got.stderr
-	diff expected.stderr got.stderr || fail $label: stderr format error with $1
+	diff expected.stderr got.stderr || fail "$label: stderr format error with $1"
     fi
 fi
 
@@ -397,7 +397,7 @@ fi
 
 if test "$3" != "IGNORE"
 then
-    diff $3 got.stdout || fail $label: stdout format error with $1
+    diff $3 got.stdout || fail "$label: stdout format error with $1"
 fi
 
 if test "$4" != "IGNORE"
@@ -406,7 +406,7 @@ then
     # diff can fail if the file does not end in newline.
     echo        >>expected.stderr
     echo        >>     got.stderr
-    diff expected.stderr got.stderr || fail $label: stderr format error with $1
+    diff expected.stderr got.stderr || fail "$label: stderr format error with $1"
 fi
 
 remove last.command expected.stdout expected.stderr got.stdout got.stderr
