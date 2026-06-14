@@ -30,3 +30,9 @@ exclude_file_name_regexp--sc_indent = [.]h$$|[.]cc$$|(src/sccs[.]c$$)
 
 
 exclude_file_name_regexp--sc_codespell = ^po/.*.po|doc/.*.pdf$$|[.](binary|latin1.txt|input)$$|^tests/binary/umsp_s$$|^build-aux/git-log-fix$$
+
+# Configuration for sc_codespell
+codespell_ignore_words_list = ""
+cssc_codespell_inhibit_color = --disable-colors
+codespell_extra_args = --ignore-words $(srcdir)/$(_build-aux)/codespell.ignore-words.txt $(cssc_codespell_inhibit_color)
+
