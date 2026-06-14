@@ -168,13 +168,43 @@ remove () {
     fi
 }
 
-rename () { mv "$1" "$2" || miscarry "Could not rename $1 to $2" ; }
+rename () {
+    if mv -f -- "$1" "$2"
+    then
+	return 0
+    fi
+    miscarry "Could not rename $1 to $2"
+}
 
 copy() {
+    if [ $# -ne 3 ]
+    then
+	echo "${label}: copy(): wrong number of arguments (expected 3, got $#)" >&2
+	return 1
+    fi
     label="${1}"
     from="${2}"
     to="${3}"
-    cp "$from" "$to" || miscarry "${label}: could not copy $from to $to" ;
+    # In case ${to} is a symlink to something we don't want to modify,
+    # ensure that cp will create ${to} instead of overwriting any
+    # existing contents.
+    rm -f -- "${to}"
+    if cp  -- "${from}" "${to}"
+    then
+	# By default cp will use the mode of ${from} when creating
+	# ${to}.  This can mean ${to} is created as a read-only file
+	# when the source tree is read-only (e.g. during 'make
+	# distcheck').  Our tests assume that the copied file is
+	# writable so we need to ensure that's the case.
+	if chmod u+w -- "${to}"
+	then
+	    return 0
+	fi
+	miscarry "${label}: failed to make ${to} writable"
+	return 1
+    fi
+    miscarry "${label}: failed to copy ${from} to ${to}"
+    return 1
 }
 
 test_script=
