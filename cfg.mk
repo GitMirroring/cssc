@@ -27,3 +27,6 @@ indent_args = --no-space-after-function-call-names --dont-break-procedure-type
 # very well, so don't re-indent .h or .cc files. Also don't reindent
 # sccs.c, instead retain the original indentation style.
 exclude_file_name_regexp--sc_indent = [.]h$$|[.]cc$$|(src/sccs[.]c$$)
+
+
+exclude_file_name_regexp--sc_codespell = ^po/.*.po|doc/.*.pdf$$|[.](binary|latin1.txt|input)$$|^tests/binary/umsp_s$$|^build-aux/git-log-fix$$
