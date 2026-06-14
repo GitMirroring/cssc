@@ -1,6 +1,8 @@
 #! /bin/sh
 
 # y-flag.sh:  Testing for the 'y' flag for admin (admin -fy).
+#
+# The y flag determines which keywords get expanded.
 
 # Import common functions & definitions.
 . ../common/test-common
@@ -12,7 +14,7 @@ g=bar
 s=s.${g}
 z=z.${g}
 
-remove $s $g $z foo command.log last.command core 
+remove $s $g $z foo command.log last.command core
 remove expected.stderr got.stderr expected.stdout got.stdout
 
 # Figure out if we should expect the thing to work.
@@ -23,7 +25,7 @@ then
     remove "${s}"
 else
     echo "WARNING: some test have been skipped since I think that ${admin} does not support the 'y' flag."
-    remove $s $g $z foo command.log last.command core 
+    remove $s $g $z foo command.log last.command core
     remove expected.stderr got.stderr expected.stdout got.stdout
     success
     exit 0
@@ -31,20 +33,7 @@ fi
 
 
 remove foo
-cat > foo <<EOF 
- 1 M %M%
- 2 R %R%
- 3 L %L%
- 4 B %B%
- 5 S %S%
- 6 Y %Y%
- 7 F %F%
- 8 Q %Q% 
- 9 C %C%
-10 C %C%
-11 Z %Z%
-12 W %W%
-EOF
+copy y-flag-foo-initial inputs/foo.initial.txt foo
 test -r foo || miscarry cannot create file foo.
 test -e "${s}" && miscarry initial conditions were incorrectly set up
 
@@ -55,144 +44,85 @@ remove foo
 # docommand A2 "${admin} -dy $s" 0 IGNORE IGNORE
 
 # default situation is that everything is expanded.
-docommand Y2 "${vg_get} -p -r1.1 ${s}" 0 "\
- 1 M bar
- 2 R 1
- 3 L 1
- 4 B 0
- 5 S 0
- 6 Y 
- 7 F s.bar
- 8 Q  
- 9 C 9
-10 C 10
-11 Z @(#)
-12 W @(#)bar	1.1
-" IGNORE
+docommand --stdout_is_file Y2 "${vg_get} -p -r1.1 ${s}" 0 inputs/foo.kw-expansion.default.binary IGNORE
 
-
+# Only expand the M flag.
 docommand YMa "${vg_admin} -fyM ${s}" 0 "" IGNORE
-docommand YMg "${get} -p -r1.1 ${s}" 0 "\
- 1 M bar\n 2 R %R%\n 3 L %L%\n 4 B %B%\n 5 S %S%\n 6 Y %Y%
- 7 F %F%\n 8 Q %Q% \n 9 C %C%\n10 C %C%\n11 Z %Z%\n12 W %W%
-" IGNORE
+docommand --stdout_is_file  YMg "${get} -p -r1.1 ${s}" 0 inputs/foo.kw-expansion.M-only.binary IGNORE
 
-# docommand Y_a "${admin} -fy_ ${s}" 0 "" IGNORE
-# docommand Y_g "${get} -p -r1.1 ${s}" 0 "\
-#  1 M %M%\n 2 R %R%\n 3 L %L%\n 4 B %B%\n 5 S %S%\n 6 Y %Y%
-#  7 F %F%\n 8 Q %Q% \n 9 C %C%\n10 C %C%\n11 Z %Z%\n12 W %W%
-# " IGNORE
-
-
+# Only expand the R flag.
 docommand YRa "${vg_admin} -fyR ${s}" 0 "" IGNORE
-docommand YRg "${get} -p -r1.1 ${s}" 0 "\
- 1 M %M%\n 2 R 1\n 3 L %L%\n 4 B %B%\n 5 S %S%\n 6 Y %Y%
- 7 F %F%\n 8 Q %Q% \n 9 C %C%\n10 C %C%\n11 Z %Z%\n12 W %W%
-" IGNORE
+docommand --stdout_is_file YRg "${get} -p -r1.1 ${s}" 0 inputs/foo.kw-expansion.R-only.binary IGNORE
 
-
+# Only expand the L flag.
 docommand YLa "${vg_admin} -fyL ${s}" 0 "" IGNORE
-docommand YLg "${vg_get} -p -r1.1 ${s}" 0 "\
- 1 M %M%\n 2 R %R%\n 3 L 1\n 4 B %B%\n 5 S %S%\n 6 Y %Y%
- 7 F %F%\n 8 Q %Q% \n 9 C %C%\n10 C %C%\n11 Z %Z%\n12 W %W%
-" IGNORE
+docommand --stdout_is_file YLg "${vg_get} -p -r1.1 ${s}" 0 inputs/foo.kw-expansion.L-only.binary IGNORE
 
+# Only expand the B flag.
 docommand YBa "${vg_admin} -fyB ${s}" 0 "" IGNORE
-docommand YBg "${vg_get} -p -r1.1 ${s}" 0 "\
- 1 M %M%\n 2 R %R%\n 3 L %L%\n 4 B 0\n 5 S %S%\n 6 Y %Y%
- 7 F %F%\n 8 Q %Q% \n 9 C %C%\n10 C %C%\n11 Z %Z%\n12 W %W%
-" IGNORE
+docommand --stdout_is_file YBg "${vg_get} -p -r1.1 ${s}" 0 inputs/foo.kw-expansion.B-only.binary IGNORE
 
+# Only expand the S flag.
 docommand YSa "${vg_admin} -fyS ${s}" 0 "" IGNORE
-docommand YSg "${vg_get} -p -r1.1 ${s}" 0 "\
- 1 M %M%\n 2 R %R%\n 3 L %L%\n 4 B %B%\n 5 S 0\n 6 Y %Y%
- 7 F %F%\n 8 Q %Q% \n 9 C %C%\n10 C %C%\n11 Z %Z%\n12 W %W%
-" IGNORE
+docommand --stdout_is_file YSg "${vg_get} -p -r1.1 ${s}" 0 inputs/foo.kw-expansion.S-only.binary IGNORE
 
+# Only expand the Y flag.
 docommand YYa "${vg_admin} -fyY ${s}" 0 "" IGNORE
-docommand YYg "${vg_get} -p -r1.1 ${s}" 0 "\
- 1 M %M%\n 2 R %R%\n 3 L %L%\n 4 B %B%\n 5 S %S%\n 6 Y 
- 7 F %F%\n 8 Q %Q% \n 9 C %C%\n10 C %C%\n11 Z %Z%\n12 W %W%
-" IGNORE
+docommand --stdout_is_file YYg "${vg_get} -p -r1.1 ${s}" 0 inputs/foo.kw-expansion.Y-only.binary IGNORE
 
-
+# Only expand the F flag.
 docommand YFa "${vg_admin} -fyF ${s}" 0 "" IGNORE
-docommand YFg "${vg_get} -p -r1.1 ${s}" 0 "\
- 1 M %M%\n 2 R %R%\n 3 L %L%\n 4 B %B%\n 5 S %S%\n 6 Y %Y%
- 7 F s.bar\n 8 Q %Q% \n 9 C %C%\n10 C %C%\n11 Z %Z%\n12 W %W%
-" IGNORE
+docommand --stdout_is_file YFg "${vg_get} -p -r1.1 ${s}" 0 inputs/foo.kw-expansion.F-only.binary IGNORE
 
+# Only expand the Q flag.
 docommand YQa "${vg_admin} -fyQ ${s}" 0 "" IGNORE
-docommand YQg "${vg_get} -p -r1.1 ${s}" 0 "\
- 1 M %M%\n 2 R %R%\n 3 L %L%\n 4 B %B%\n 5 S %S%\n 6 Y %Y%
- 7 F %F%\n 8 Q  \n 9 C %C%\n10 C %C%\n11 Z %Z%\n12 W %W%
-" IGNORE
+docommand --stdout_is_file YQg "${vg_get} -p -r1.1 ${s}" 0 inputs/foo.kw-expansion.Q-only.binary IGNORE
 
-
+# Only expand the C flag.
 docommand YCa "${vg_admin} -fyC ${s}" 0 "" IGNORE
-docommand YCg "${vg_get} -p -r1.1 ${s}" 0 "\
- 1 M %M%\n 2 R %R%\n 3 L %L%\n 4 B %B%\n 5 S %S%\n 6 Y %Y%
- 7 F %F%\n 8 Q %Q% \n 9 C 9\n10 C 10\n11 Z %Z%\n12 W %W%
-" IGNORE
+docommand --stdout_is_file YCg "${vg_get} -p -r1.1 ${s}" 0 inputs/foo.kw-expansion.C-only.binary IGNORE
 
-
+# Only expand the Z flag.
 docommand YZa "${vg_admin} -fyZ ${s}" 0 "" IGNORE
-docommand YZg "${vg_get} -p -r1.1 ${s}" 0 "\
- 1 M %M%\n 2 R %R%\n 3 L %L%\n 4 B %B%\n 5 S %S%\n 6 Y %Y%
- 7 F %F%\n 8 Q %Q% \n 9 C %C%\n10 C %C%\n11 Z @(#)\n12 W %W%
-" IGNORE
+docommand --stdout_is_file YZg "${vg_get} -p -r1.1 ${s}" 0 inputs/foo.kw-expansion.Z-only.binary IGNORE
 
+# Only expand the W flag.
 docommand YWa "${vg_admin} -fyW ${s}" 0 "" IGNORE
-docommand YWg "${get} -p -r1.1 ${s}" 0 "\
- 1 M %M%\n 2 R %R%\n 3 L %L%\n 4 B %B%\n 5 S %S%\n 6 Y %Y%
- 7 F %F%\n 8 Q %Q% \n 9 C %C%\n10 C %C%\n11 Z %Z%\n12 W @(#)bar	1.1
-" IGNORE
+docommand --stdout_is_file YWg "${get} -p -r1.1 ${s}" 0 inputs/foo.kw-expansion.W-only.binary IGNORE
 
+# Expand the W and C flags.
 docommand YCWa "${vg_admin} -fyW,C ${s}" 0 "" IGNORE
-docommand YCWg "${get} -p -r1.1 ${s}" 0 "\
- 1 M %M%\n 2 R %R%\n 3 L %L%\n 4 B %B%\n 5 S %S%\n 6 Y %Y%
- 7 F %F%\n 8 Q %Q% \n 9 C 9\n10 C 10\n11 Z %Z%\n12 W @(#)bar	1.1
-" IGNORE
+docommand --stdout_is_file YCWg "${get} -p -r1.1 ${s}" 0  inputs/foo.kw-expansion.WC-only.binary IGNORE
 
+remove ${g} ${s} foo
 
 # Now, testing for %A% and %I%
-remove ${g} ${s}
+g=quux
+s="s.${g}"
+z="z.${g}"
 
+remove "${g}" "${s}" "${z}"
+copy y-flag-quux-initial inputs/quux.initial.txt "${g}"
 
-remove foo
-cat > foo <<EOF 
- 1 %Z%%Y% %M% %I%%Z%
- 2 %A%
-EOF
-test -r foo || miscarry cannot create file foo.
+docommand YA1 "${admin} -i"${g}" ${s}" 0 "" IGNORE
+remove "${g}"
 
-docommand YA1 "${admin} -ifoo ${s}" 0 "" IGNORE
-remove foo
-
+# Delete the y flag (so all keywords are expanded)
 docommand YA2 "${vg_admin} -dy ${s}" 0 "" IGNORE
-docommand YA3 "${get} -p -r1.1 ${s}" 0 "\
- 1 @(#) bar 1.1@(#)
- 2 @(#) bar 1.1@(#)
-" IGNORE
+docommand --stdout_is_file YA3 "${get} -p -r1.1 ${s}" 0 inputs/quux.kw-expansion.default.binary IGNORE
 
-# Disable expansion of %Z% and %I%, and check that it is still expanded in 
+# Disable expansion of %Z% and %I%, and check that it is still expanded in
 # %A%.
 docommand YA4 "${vg_admin} -fyA,M ${s}" 0 "" IGNORE
-docommand YA5 "${get} -p -r1.1 ${s}" 0 "\
- 1 %Z%%Y% bar %I%%Z%
- 2 @(#) bar 1.1@(#)
-" IGNORE
+docommand --stdout_is_file YA5 "${get} -p -r1.1 ${s}" 0 inputs/quux.kw-expansion.AM.binary IGNORE
 
 # Disable M as well and check again.
-# Disable expansion of %Z% and %I%, and check that it is still expanded in 
+# Disable expansion of %Z% and %I%, and check that it is still expanded in
 # %A%.
 docommand YA6 "${vg_admin} -fyA ${s}" 0 "" IGNORE
-docommand YA7 "${get} -p -r1.1 ${s}" 0 "\
- 1 %Z%%Y% %M% %I%%Z%
- 2 @(#) bar 1.1@(#)
-" IGNORE
+docommand --stdout_is_file YA7 "${get} -p -r1.1 ${s}" 0 inputs/quux.kw-expansion.A.binary IGNORE
 
-
-remove $s $g $z foo command.log last.command core 
+remove "${s}" "${g}" "${z}" foo command.log last.command core
 remove expected.stderr got.stderr expected.stdout got.stdout
+
 success
