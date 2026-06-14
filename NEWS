@@ -17,6 +17,9 @@ New in CSSC-1.5.0-rc3, 2026-06-14
 
 	* Updated version of gnulib.
 
+	* Updated version of googletest; this is now at the last
+          version at which it still supported building with Automake.
+
 New in CSSC-1.5.0-rc2, 2024-05-13
 
 	 * This release is more careful to detect I/O failures when
