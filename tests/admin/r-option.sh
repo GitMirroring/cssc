@@ -56,12 +56,11 @@ then
     docommand t4 "${prs} -d:I: $s" 0 "1.2.2.1\n" ""
 
     
-    # The -r option must be accompanied by the -i option.
-    # Using the -n option just isn't enough.
+    # Schily-SCCS is planning to allow admin -n -r2.  We allow it, at
+    # Schily's request.  Other SCCS implementations reject it.
     remove $g $s
     echo "%M%" > $g
-    docommand t5 "${admin} -n -r2 $s" 1 "" IGNORE
-    
+    docommand t5 "${admin} -n -r2 $s" 0 "" IGNORE
 else
     echo Tests t1-t5 have been skipped
 fi

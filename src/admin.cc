@@ -242,10 +242,19 @@ main(int argc, char **argv)
     }
 
 
-  if (got_r_option && !iname)
+  if (got_r_option)
     {
-      errormsg("You must use the -i option if you use the -r option.");
-      return 1;
+      if (!new_sccs_file)
+	{
+	  /* Although we accept -r -n, don't mention it since it is less
+	     portable. */
+	  errormsg("You must use the -i option if you use the -r option.");
+	  return 1;
+	}
+      else if (!iname)
+	{
+	  warning("Using -r without -i is not portable.");
+	}
     }
 
 
