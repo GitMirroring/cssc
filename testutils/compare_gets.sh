@@ -92,7 +92,7 @@ if test -x "$get1"
 then
     true
 else
-    echo "$get1 is not exexutable." >&2
+    echo "$get1 is not executable." >&2
     exit 2
 fi
 
@@ -100,7 +100,7 @@ if test -x "$get2"
 then
     true
 else
-    echo "$get2 is not exexutable." >&2
+    echo "$get2 is not executable." >&2
     exit 2
 fi
 
