@@ -135,7 +135,7 @@ public:
   {
     if (lock_cnt_ > 1)
       {
-	warning("deleting sccs_name instance whle lock_cnt is %d "
+	warning("deleting sccs_name instance while lock_cnt is %d "
 		"(expected <= 1)", lock_cnt_);
       }
   }

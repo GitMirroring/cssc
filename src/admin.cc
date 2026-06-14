@@ -167,7 +167,7 @@ main(int argc, char **argv)
 	    first_sid = sid(rel_str);
 	    if (!first_sid.valid())
 	      {
-		errormsg("Invaild initial release: '%s'", rel_str);
+		errormsg("Invalid initial release: '%s'", rel_str);
 		return 1;
 	      }
 	  }

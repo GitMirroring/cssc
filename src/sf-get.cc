@@ -68,7 +68,7 @@ sccs_file::prepare_seqstate_1(seq_state &state, seq_no seq)
       if (d.prev_seq() == y) {
 	  corrupt_file("sequence number %u cannot be its own predecessor", unsigned(y));
       } else if (d.prev_seq() > y) {
-	  corrupt_file("sequene number %u has invalid (subsequent) predecessor %u",
+	  corrupt_file("sequence number %u has invalid (subsequent) predecessor %u",
 		       unsigned(y), unsigned(d.prev_seq()));
       }
       state.set_included(d.prev_seq(), false);

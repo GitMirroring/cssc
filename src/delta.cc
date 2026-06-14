@@ -89,7 +89,7 @@ delta_main(int argc, char **argv)
     case 'r':
       rid = sid(opts.getarg());
       if (!rid.valid()) {
-	errormsg("Invaild SID: '%s'", opts.getarg());
+	errormsg("Invalid SID: '%s'", opts.getarg());
 	return EXITVAL_INVALID_OPTION;
       }
       break;

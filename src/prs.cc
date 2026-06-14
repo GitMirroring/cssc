@@ -90,7 +90,7 @@ main(int argc, char **argv)
 	      rid = sid(opts.getarg());
 	      if (!rid.valid() || rid.partial_sid())
 		{
-		  errormsg("Invaild SID: '%s'", opts.getarg());
+		  errormsg("Invalid SID: '%s'", opts.getarg());
 		  return 2;
 		}
 	    }

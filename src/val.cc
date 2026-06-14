@@ -101,7 +101,7 @@ main(int argc, char **argv)
 	  rid = sid(req_sid_str);
 	  if (!rid.valid())
 	    {
-	      errormsg("Invaild SID: '%s'", opts.getarg());
+	      errormsg("Invalid SID: '%s'", opts.getarg());
 	      problem(retval, Val_InvalidSID);
 	    }
 	  break;

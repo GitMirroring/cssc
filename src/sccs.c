@@ -1651,7 +1651,7 @@ safepath (register const char *p)
         }
     }
 
-  printf ("You may not use full pathnames or \"..\" but you specifed '%s'\n", arg);
+  fprintf (stderr, "You may not use full pathnames or \"..\" but you specified '%s'\n", arg);
   return FALSE;
 }
 

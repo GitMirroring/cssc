@@ -1,5 +1,7 @@
 New in CSSC-1.5.0-rc3, 2026-06-14
 
+        * Some typos in error message have been fixed.
+
         * admin now supports combination of -r with -n as well as the
           portable combination of -r with -i.
 

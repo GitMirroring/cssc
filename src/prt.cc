@@ -129,7 +129,7 @@ main(int argc, char **argv)
 	      if (!exclude.cutoff_sid.valid()
 		  || exclude.cutoff_sid.partial_sid())
 		{
-		  errormsg("Invaild SID: '%s'", opts.getarg());
+		  errormsg("Invalid SID: '%s'", opts.getarg());
 		  return 2;
 		}
 	    }
