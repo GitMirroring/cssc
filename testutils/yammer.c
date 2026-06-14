@@ -48,13 +48,12 @@
 #include "gettext.h"
 #include "progname.h"
 
-int
-main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
   int i, j;
-  const char * prog;
+  const char *prog;
 
-  set_program_name (argv[0]);
+  set_program_name(argv[0]);
   if (NULL == setlocale(LC_ALL, ""))
     {
       /* If we can't set the locale as the user wishes,
@@ -63,8 +62,8 @@ main(int argc, char *argv[])
        */
       perror("Error setting locale");
     }
-  bindtextdomain (PACKAGE, LOCALEDIR);
-  textdomain (PACKAGE);
+  bindtextdomain(PACKAGE, LOCALEDIR);
+  textdomain(PACKAGE);
 
   prog = program_name ? program_name : "yammer";
   if (argc != 3)
@@ -80,9 +79,9 @@ main(int argc, char *argv[])
   else
     {
       for (j = 1; i > 0; i--, j++)
-        {
-          fprintf(stdout, "%d %s\n", j, argv[2]);
-        }
+	{
+	  fprintf(stdout, "%d %s\n", j, argv[2]);
+	}
       return 0;
     }
 }

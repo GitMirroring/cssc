@@ -832,4 +832,3 @@ make_unique_sccs_file_parser(const std::string& name, sccs_file_open_mode m, FIL
   return std::unique_ptr<sccs_file_parser>(new sccs_file_parser(name, m, f, c));
 #endif
 }
-

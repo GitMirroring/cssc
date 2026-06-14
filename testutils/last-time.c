@@ -31,9 +31,7 @@
 #include <time.h>
 
 
-static int*
-next_field(struct tm *ptm,
-	   int *current)
+static int *next_field(struct tm *ptm, int *current)
 {
   int *next;
 
@@ -71,8 +69,8 @@ int main()
        */
       perror("Error setting locale");
     }
-  bindtextdomain (PACKAGE, LOCALEDIR);
-  textdomain (PACKAGE);
+  bindtextdomain(PACKAGE, LOCALEDIR);
+  textdomain(PACKAGE);
 
   tm_time.tm_year = 97;		/* 1997 */
   tm_time.tm_mon = 0;		/* counts from zero for some reason. */
@@ -90,7 +88,7 @@ int main()
   while (maxiters--)
     {
       now = mktime(ptm);
-      if ( (time_t)-1 == then )
+      if ((time_t) - 1 == then)
 	{
 	  perror("mktime error");
 	  exit(1);

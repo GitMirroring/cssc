@@ -41,7 +41,7 @@ static int duplicate_group(gid_t g, const gid_t *vec, int len)
   while (len--)
     {
       if (*vec == g)
-        return 1;
+	return 1;
     }
   return 0;
 }
@@ -67,39 +67,39 @@ static gid_t *get_group_list(int *ngroups)
     }
   else
     {
-      grouplist = malloc((1+len) * sizeof(*grouplist));
+      grouplist = malloc((1 + len) * sizeof(*grouplist));
       if (grouplist)
-        {
-          /* We don't know if the effectve group ID is in
-           * the list returned by grouplist, so find out
-           * and return a list with it included, but only once
-           */
-          gid_t egid = getegid();
-          if (getgroups(len, &grouplist[1]))
-            {
-              if (duplicate_group(egid, grouplist+1, len))
-                {
-                  *ngroups = len;
-                  return &grouplist[1];
-                }
-              else
-                {
-                  grouplist[0] = egid;
-                  *ngroups = len+1;
-                  return &grouplist[0];
-                }
-            }
-          else
-            {
-              perror("getgroups");
-              return NULL;
-            }
-        }
+	{
+	  /* We don't know if the effectve group ID is in
+	   * the list returned by grouplist, so find out
+	   * and return a list with it included, but only once
+	   */
+	  gid_t egid = getegid();
+	  if (getgroups(len, &grouplist[1]))
+	    {
+	      if (duplicate_group(egid, grouplist + 1, len))
+		{
+		  *ngroups = len;
+		  return &grouplist[1];
+		}
+	      else
+		{
+		  grouplist[0] = egid;
+		  *ngroups = len + 1;
+		  return &grouplist[0];
+		}
+	    }
+	  else
+	    {
+	      perror("getgroups");
+	      return NULL;
+	    }
+	}
       else
-        {
-              perror("malloc");
-              return NULL;
-        }
+	{
+	  perror("malloc");
+	  return NULL;
+	}
     }
 }
 
@@ -113,10 +113,10 @@ static void do_groups()
     {
       int i;
 
-      for (i=0; i<ngroups; ++i)
-        {
-          fprintf(stdout, "%ld\n", (long) list[i]);
-        }
+      for (i = 0; i < ngroups; ++i)
+	{
+	  fprintf(stdout, "%ld\n", (long) list[i]);
+	}
     }
   else
     {
@@ -128,8 +128,8 @@ static void do_groups()
 
 static int compare_groups(const void *pv1, const void *pv2)
 {
-  const gid_t *p1 = (const gid_t*) pv1;
-  const gid_t *p2 = (const gid_t*) pv2;
+  const gid_t *p1 = (const gid_t *) pv1;
+  const gid_t *p2 = (const gid_t *) pv2;
 
   if (*p1 < *p2)
     return -1;
@@ -150,16 +150,16 @@ static gid_t foreign_group(void)
 
   qsort(list, ngroups, sizeof(*list), compare_groups);
 
-  for (i=1; i<ngroups; ++i)
+  for (i = 1; i < ngroups; ++i)
     {
       /* nextval is a gid_t value 1 greater than the last gid we saw */
-      const gid_t nextval = 1+list[i-1];
+      const gid_t nextval = 1 + list[i - 1];
 
-      if (nextval < list[i] )
-        {
-          /* we have a gap. */
-          return nextval;
-        }
+      if (nextval < list[i])
+	{
+	  /* we have a gap. */
+	  return nextval;
+	}
     }
 
   /* We can't just add 1 to the value of the last entry in the list
@@ -168,24 +168,24 @@ static gid_t foreign_group(void)
   if (ngroups)
     {
       if (list[0] > 0)
-        return 0;
+	return 0;
       else
-        return 1+list[ngroups-1];
+	return 1 + list[ngroups - 1];
     }
-  else /* not a member of any groups? */
+  else				/* not a member of any groups? */
     {
       gid_t last_resort = getegid();
       if (last_resort > 0)
-        return 0;
+	return 0;
       else
-        return 1+last_resort;
+	return 1 + last_resort;
     }
 }
 
 
 int main(int argc, char *argv[])
 {
-  set_program_name (argv[0]);
+  set_program_name(argv[0]);
   if (NULL == setlocale(LC_ALL, ""))
     {
       /* If we can't set the locale as the user wishes,
@@ -194,42 +194,42 @@ int main(int argc, char *argv[])
        */
       perror("Error setting locale");
     }
-  bindtextdomain (PACKAGE, LOCALEDIR);
-  textdomain (PACKAGE);
+  bindtextdomain(PACKAGE, LOCALEDIR);
+  textdomain(PACKAGE);
 
   if (2 == argc)
     {
       if (0 == strcmp(argv[1], "name"))
-        {
-          struct passwd *p;
-          const char *pn = "unknown";
-          p = getpwuid(getuid());
-          if (p)
-            pn = p->pw_name;
+	{
+	  struct passwd *p;
+	  const char *pn = "unknown";
+	  p = getpwuid(getuid());
+	  if (p)
+	    pn = p->pw_name;
 
-          fprintf(stdout, "%s\n", pn);
-          return 0;
-        }
+	  fprintf(stdout, "%s\n", pn);
+	  return 0;
+	}
       else if (0 == strcmp(argv[1], "groups"))
-        {
-          do_groups();
-          return 0;
-        }
+	{
+	  do_groups();
+	  return 0;
+	}
       else if (0 == strcmp(argv[1], "foreigngroup"))
-        {
-          fprintf(stdout, "%ld\n", (long)foreign_group());
-          return 0;
-        }
+	{
+	  fprintf(stdout, "%ld\n", (long) foreign_group());
+	  return 0;
+	}
       else if (0 == strcmp(argv[1], "group"))
-        {
-          fprintf(stdout, "%ld\n", (long)getgid());
-          return 0;
-        }
+	{
+	  fprintf(stdout, "%ld\n", (long) getgid());
+	  return 0;
+	}
       else
-        {
-          fprintf(stderr, "%s", usage_str);
-          return 1;
-        }
+	{
+	  fprintf(stderr, "%s", usage_str);
+	  return 1;
+	}
     }
   else
     {

@@ -17,3 +17,13 @@ release_archive_dir = ../..//tarfiles/public-releases/
 
 news-check-regexp = '^New in CSSC-$(VERSION_REGEXP), $(today)'
 news-check-regexp-prev = ^New in CSSC-$(PREV_VERSION_REGEXP), [0-9-]*
+
+
+# Indentation customisation is controlled by indent_args.  We depart
+# from the (GNU) defaults in some small ways.
+indent_args = --no-space-after-function-call-names --dont-break-procedure-type
+
+# Our .h files are C++ rather than C.  GNU indent does not handle C++
+# very well, so don't re-indent header files. Also don't reindent
+# sccs.c, instead retain the original indentation style.
+exclude_file_name_regexp--sc_indent = ([.]h$$)|(src/sccs[.]c$$)
