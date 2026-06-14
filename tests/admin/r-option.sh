@@ -32,7 +32,7 @@ docommand R4 "${prs} -d:I: $s" 0 "2.1\n" ""
 
 ##
 ## Some implementations of SCCS don't allow (e.g.) -r1.2,
-## so if we're not running agains CSSC, we skip the 
+## so if we're not running against CSSC, we skip the
 ## tests that deal with that kind of thing.
 ##
 
@@ -42,20 +42,20 @@ then
     remove $g $s
     echo "%M%" > $g
     docommand t1 "${vg_admin} -i$g -r1.2 $s" 0 "" IGNORE
-    
+
     # Make sure it really is ID 1.2.
     docommand t2 "${prs} -d:I: $s" 0 "1.2\n" ""
-    
-    
+
+
     # Now try a 4-component SID.
     remove $g $s
     echo "%M%" > $g
     docommand t3 "${vg_admin} -i$g -r1.2.2.1 $s" 0 "" IGNORE
-    
+
     # Make sure it really is ID 1.2.
     docommand t4 "${prs} -d:I: $s" 0 "1.2.2.1\n" ""
 
-    
+
     # Schily-SCCS is planning to allow admin -n -r2.  We allow it, at
     # Schily's request.  Other SCCS implementations reject it.
     remove $g $s

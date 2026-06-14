@@ -75,7 +75,7 @@ is_leapyear(int year)
 {
   if (year % 4)
     {
-      return 0;                 // not a leapyear.
+      return 0;                 // not a leap year.
     }
   else
     {
@@ -257,7 +257,7 @@ sccs_date::sccs_date(const char *date_arg, const char *time)
   std::string date(date_arg);
   int century;
 
-  /* Check for the symtoms of SourceForge bug ID 513800, where
+  /* Check for the symptoms of SourceForge bug ID 513800, where
    * the Data General version of Unix puts a four-digit year
    * into the p-file.
    */
@@ -488,7 +488,7 @@ int sccs_date::compare(const sccs_date& d) const
 
      So in theory this implementation is incorrect.  However, since
      the SCCS date format does not include time zone information, we
-     cannot receive t2 as input in this case (it would bre represnted
+     cannot receive t2 as input in this case (it would be represented
      as the time 01:00::01 and would be understood to represent a time
      3601 seconds into the day).
    */

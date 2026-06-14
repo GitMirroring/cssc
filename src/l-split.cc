@@ -20,7 +20,7 @@
  * CSSC was originally Based on MySC, by Ross Ridge, which was
  * placed in the Public Domain.
  *
- * Functions for non-destructively spliting a string into a list of
+ * Functions for non-destructively splitting a string into a list of
  * strings.
  *
  */

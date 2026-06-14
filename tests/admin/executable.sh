@@ -61,7 +61,7 @@ fi
 
 file_permissions() {
     expect_args file_permissions 1 $#
-    ls -ld "$1" 2> /dev/null | sed -n -e '1 s/^.\(.........\).*/\1/p' 
+    ls -ld "$1" 2> /dev/null | sed -n -e '1 s/^.\(.........\).*/\1/p'
 }
 
 is_owner_executable() {
@@ -71,7 +71,7 @@ is_owner_executable() {
 	*) false;;
     esac
 }
-  
+
 is_group_executable() {
     expect_args is_group_executable 1 $#
     case `file_permissions "$1"` in
@@ -125,7 +125,7 @@ selfcheck 0170 ug
 selfcheck 0171 ugo
 selfcheck 0071  go
 
-    
+
 (
     setup x01 0077 0700
     test -f "${g}" || miscarry "where is ${g}?"
@@ -135,7 +135,7 @@ selfcheck 0071  go
     else
         miscarry "Cannot create an executable file"
     fi
-    
+
     echo_nonl "${test_script}:x02..."
     if test "`execute_perms ${s}`" = u; then
         echo passed
@@ -199,7 +199,7 @@ setup x09 0177 0600
 docommand x10 "test -x ${g}" 1 "" ""
 
 if docommand x11 "${admin} -fx ${s}" IGNORE IGNORE IGNORE; then
-    # x-flag is suported. The s-file should still not be executable, since the x flag
+    # x-flag is supported. The s-file should still not be executable, since the x flag
     # controls the mode of the gotten file, not the history file.
     docommand x12 "test -x ${s}" 1 "" ""
     docommand x13 "rm -f ${g}" 0 "" ""

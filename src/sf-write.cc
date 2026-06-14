@@ -555,7 +555,7 @@ sccs_file::end_update(FILE **pout)
       if (flags.encoded)
 	{
 	  rewind(*pout);
-	  // TODO: change retrn type of rehack_encoded_flag.
+	  // TODO: change return type of rehack_encoded_flag.
 	  Failure hacked = rehack_encoded_flag(*pout, &sum);
 	  if (!hacked.ok())
 	    return diagnose(hacked) << "failed to update encoded flag in "

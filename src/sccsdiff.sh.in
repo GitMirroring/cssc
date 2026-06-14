@@ -122,7 +122,7 @@ do
 		    arg=-r"$2"
 		    shift;
 		else
-		    # SID imediately follow the "-r", in the same argument.
+		    # SID immediately follows the "-r", in the same argument.
 		    arg="$1"
 		fi
 

@@ -4,7 +4,7 @@
 # Import common functions & definitions.
 . ../common/test-common
 
-remove command.log 
+remove command.log
 
 g=brtest
 s=s.$g
@@ -20,12 +20,12 @@ docommand B1 "$admin -n -i$g $s" 0 "" IGNORE
 remove $g
 
 # Try making a branch when the "b" flag is not set.
-# This should suceed (really!), but a branch should not be 
+# This should succeed (really!), but a branch should not be
 # made.
 docommand B2 "${vg_get} -e -b $s" 0 "1.1\nnew delta 1.2\n1 lines\n" IGNORE
 # When the -b flag is ignored, CSSC emits a warning but SCCS is silent.
 
-# I *think* it's possible that not all versions of SCCS emit anything 
+# I *think* it's possible that not all versions of SCCS emit anything
 # to stdout for "unget".   At least, that's what I gather from an email
 # from Maurice O' Donnell <mod@tfn.com>.
 docommand B3 "$unget $s" 0 "1.2\n" ""
@@ -48,14 +48,14 @@ docommand B9 "${vg_get} -e -r1.1.1.1 $s" 0 "1.1.1.1\nnew delta 1.1.1.2\n1 lines\
 docommand B10 "$delta -yNoComment $s" 0 "1.1.1.2\n0 inserted\n0 deleted\n1 unchanged\n" ""
 
 
-# Making a second branch at a location where one already exists will 
-# create a second branch; the release number stays the same, but the 
+# Making a second branch at a location where one already exists will
+# create a second branch; the release number stays the same, but the
 # branch number chosen is one greater than the last time.
 docommand B11 "${vg_get} -e -b -r1.1.1.1 $s" 0 "1.1.1.1\nnew delta 1.1.3.1\n1 lines\n" ""
 docommand B12 "$delta -yNoComment $s" 0 "1.1.3.1\n0 inserted\n0 deleted\n1 unchanged\n" ""
 
-# Make another branch at 1.1.  We continue just to increase 
-# the branch number.   I know this seems a bit silly, but 
+# Make another branch at 1.1.  We continue just to increase
+# the branch number.   I know this seems a bit silly, but
 # it really is the way SCCS works, and we must be compatible with it.
 docommand B13 "${vg_get} -e -b $s" 0 "1.1\nnew delta 1.1.4.1\n1 lines\n" ""
 

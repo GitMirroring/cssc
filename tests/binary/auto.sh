@@ -25,11 +25,11 @@ bad() {
 }
 
 
-# test_bin: 
+# test_bin:
 # Usage:   test_bin LABEL <contents>
 #
-# create a flie containing the specified argument and check
-# that it is encoded as a binary file.  
+# create a file containing the specified argument and check
+# that it is encoded as a binary file.
 test_bin() {
 label=$1
 echo_nonl ${label}...
@@ -51,10 +51,10 @@ fi
 rm -f infile $s
 }
 
-# test_ascii: 
+# test_ascii:
 #
 # As for test_bin, but the resulting SCCS file must NOT be encoded.
-# 
+#
 test_ascii() {
 label=$1
 echo_nonl ${label}...
@@ -91,11 +91,11 @@ adminflags=""
 if $binary_support
 then
 
-test_ascii a1 "foo\n" 
-test_ascii a2 "foo\nbar\n" 
+test_ascii a1 "foo\n"
+test_ascii a2 "foo\nbar\n"
 test_ascii a3 ""                        # an empty input file should be OK.
 test_bin   b4 "\001\n"                  # line starts with control-a
-test_ascii a5 "x\001\n"                 # line contains ^A but doesnt start with it.
+test_ascii a5 "x\001\n"                 # line contains ^A but doesn't start with it.
 
 adminflags=-b
 test_bin   b6 "foo\n"                   # Test manual encoding override.
@@ -117,6 +117,6 @@ remove command.log $s $p $g $z $x infile
 
 else
 echo "No binary file support -- tests skipped"
-fi # binary support. 
+fi # binary support.
 
-success 
+success

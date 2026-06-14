@@ -47,7 +47,7 @@ namespace
 
 #ifdef CONFIG_WHAT_USE_STDIO
 
-/* Inline fuctions for reading files with stdio. */
+/* Inline functions for reading files with stdio. */
 typedef FILE *XFILE;
 
 const XFILE XOPEN_FAILURE = 0;

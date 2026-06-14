@@ -376,7 +376,7 @@ static FailureOr<int> atomic_nfs_create(const std::string& path, int flags, int 
                * s-file in the same directory)
                *
                * Try again.  Sleep first if we're not doing well,
-               * but try to avoid pathalogical cases...
+               * but try to avoid pathological cases...
                */
               maybe_wait_a_bit(attempt, path.c_str());
               break;

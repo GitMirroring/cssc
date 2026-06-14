@@ -1,7 +1,7 @@
 #! /bin/sh
 # sf479916.sh:  Tests for SourceForge bug 479916,
 #               which relates to correct selection of
-#               a delta from a branch when the -t flag is 
+#               a delta from a branch when the -t flag is
 #               used.
 
 # Import common functions & definitions.
@@ -10,7 +10,7 @@
 
 g=X
 s=s.$g
-x=x.$g 
+x=x.$g
 z=z.$g
 p=p.$g
 
@@ -37,7 +37,7 @@ new delta 1.1.2.1
 docommand prep5 "${delta} -yNoComment $s" 0 IGNORE IGNORE
 
 
-# Now for the actual test - the "-t" option should pich the 
+# Now for the actual test - the "-t" option should pick the
 # most recent delata, which is 1.1.2.1, not 1.1.1.1.
 
 docommand T1 "${vg_get} -t $s" 0 "1.1.2.1

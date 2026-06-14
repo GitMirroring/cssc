@@ -186,7 +186,7 @@ sccs_file::add_delta(const std::string& gname,
    * XXX: slight departure from SCCS behaviour here.  The real thing
    * appears to issue an unlink(2) followed by a create(2) to create
    * the file.  If there is a setuid wrapper, but some ordinary user
-   * has sufficient priveleges to create a symlink in the project
+   * has sufficient privileges to create a symlink in the project
    * directory, it should be possible to exploit that race condition
    * to create a file of their choice with contents of their choice,
    * as the user to which the wrapper program is set-user or set-group

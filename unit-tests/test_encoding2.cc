@@ -29,7 +29,7 @@
 TEST(EncodingTest, ShortInput)
 {
   // The encoding scheme normally takes input in groups of 3 bytes.
-  // Hence we had a problem if the input was only 2 bytes (specificaly
+  // Hence we had a problem if the input was only 2 bytes (specifically
   // a branch on uninitialised data detected by valgrind).
   char *in = (char*)malloc(3);
   char out[6];

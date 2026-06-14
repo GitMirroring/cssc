@@ -8,7 +8,7 @@
 
 ret_invalid_option=1
 
-remove 
+remove
 
 
 g=foo
@@ -30,7 +30,7 @@ remove $g
 docommand de2 "${vg_get} -s -p $s" 0 "foo\n" IGNORE
 docommand de3 "${vg_get} -s -p -r1.1 $s" 0 "foo\n" IGNORE
 
-# Attempt to get a nonexistent SID should fail. 
+# Attempt to get a nonexistent SID should fail.
 docommand de4 "${vg_get} -r1.2 $s" 1 "" IGNORE
 
 # Attempt to get an invalid SID should fail (we try several)
@@ -49,13 +49,13 @@ docommand de11 "${vg_get} -r1.1.1.1 -i1.2 $s" 0 "Included:
 1.1.1.1\n1 lines
 " IGNORE
 
-# The next is trhe case we really want to test - trying to include an invalid
-# SID.  We try several ways. 
+# The next is the case we really want to test - trying to include an invalid
+# SID.  We try several ways.
 docommand de12 "${vg_get} -r1.1.1.1 -ia1.2a $s"      ${ret_invalid_option} IGNORE IGNORE
 docommand de13 "${vg_get} -r1.1.1.1 -i.1   $s"      ${ret_invalid_option} IGNORE IGNORE
 docommand de14 "${vg_get} -r1.1.1.1 -i1.1.1.1.1 $s" ${ret_invalid_option} IGNORE IGNORE
 
-# Now trying to exclude an invalid SID.  We try several ways. 
+# Now trying to exclude an invalid SID.  We try several ways.
 docommand de15 "${vg_get} -r1.1.1.1 -x1.2a $s"      ${ret_invalid_option} IGNORE IGNORE
 docommand de16 "${vg_get} -r1.1.1.1 -x.1   $s"      ${ret_invalid_option} IGNORE IGNORE
 docommand de17 "${vg_get} -r1.1.1.1 -x1.1.1.1.1 $s" ${ret_invalid_option} IGNORE IGNORE

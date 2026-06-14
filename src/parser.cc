@@ -167,7 +167,7 @@ sccs_file_parser::read_delta() {
         ASSERT(bufchar(1) == 's');
         check_arg();
 
-        char *args[7];          /* Stores the result of spliting a line */
+        char *args[7];          /* Stores the result of splitting a line */
 
         if (plinebuf->split(3, args, 3, '/') != 3)
           {

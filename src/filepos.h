@@ -41,7 +41,7 @@ class FilePosSaver		// with fsetpos()...
   bool disarmed_;
 
   // This class has a pointer member.  So that we don't have to
-  // override the copy constructor or assigment operator, we delete
+  // override the copy constructor or assignment operator, we delete
   // them.
   FilePosSaver& operator=(const FilePosSaver&) = delete;
   FilePosSaver(const FilePosSaver&) = delete;

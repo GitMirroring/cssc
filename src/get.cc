@@ -469,7 +469,7 @@ main(int argc, char **argv)
 		  if (!fof.ok())
 		    {
 		      // XXX: This would probably be surprising to the
-		      // user (compared witht he alternative of faling
+		      // user (compared with the alternative of faling
 		      // with an error message).  Compare what other
 		      // SCCS implementation do.
 		      summary_file = NULL;

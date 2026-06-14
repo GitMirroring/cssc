@@ -153,7 +153,7 @@ seq_state::~seq_state()
 // We have a series of deltas, each identified by sequence numbers.
 // larger sequence numbers were added to the file after smaller
 // ones.  Therefore, instructions imposed by larger sequence numbers
-// supercede those imposed by older ones, except when the larger
+// supersede those imposed by older ones, except when the larger
 // sequence number is not included in the delta we are trying to get.
 //
 // Changes that are inserted by a sequence number later than the one we're
@@ -206,7 +206,7 @@ seq_state::decide_disposition()
 
   if (our_highest_delete > our_highest_insert)
     {
-      // Our deletion supercedes insertion
+      // Our deletion supersedes insertion
       inserting = false;
     }
   else if (our_highest_insert > owner_of_current_insertion)

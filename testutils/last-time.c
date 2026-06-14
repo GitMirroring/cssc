@@ -18,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  *
- * This program is not installed as part of CSSC.  It's just desinged
+ * This program is not installed as part of CSSC.  It's just designed
  * to help you figure out the year-2038 date at which your C library
  * gives out.
  *

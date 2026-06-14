@@ -210,7 +210,7 @@ static const char filever[] = "$Id: sccs.c,v 1.44 2007/12/19 00:21:14 jay Exp $"
    **           delget          Macro for "delta" followed by "get".
    **           deledit         Macro for "delta" followed by "get -e".
    **           branch          Macro for "get -b -e", followed by "delta
-   **                           -s -n", followd by "get -e -t -g".
+   **                           -s -n", followed by "get -e -t -g".
    **           diffs           "diff" the specified version of files
    **                           and the checked-out version.
    **           print           Macro for "prs -e" followed by "get -p -m".
@@ -238,7 +238,7 @@ static const char filever[] = "$Id: sccs.c,v 1.44 2007/12/19 00:21:14 jay Exp $"
    **                      or getlogin in setuid programs.
    **
    **           PREFIX  -- Sets the default prefix which allows us to
-   **                      find the SCCS subcommands.  Unless you overrride
+   **                      find the SCCS subcommands.  Unless you override
    **                      this on the compiler command line or by editing
    **                      the source, this defaults to "/usr/sccs".  Using
    **                      the --version flag will tell you what the setting
@@ -862,7 +862,7 @@ try_to_exec(const char *prog, char * const argv[])
     printf ("try_to_exec: %s\n", prog);
 #endif
 
-  /* subprogram_exec_prefix is always NULL if we are runnign setuid. */
+  /* subprogram_exec_prefix is always NULL if we are running setuid. */
   if (subprogram_exec_prefix)
     {
       prefix = subprogram_exec_prefix;
@@ -909,7 +909,7 @@ try_to_exec(const char *prog, char * const argv[])
       /* if the above exec() returns or was not allowed, try our prefix.
        */
       /* SourceForge BUG #448215: patch from Jeff Sheinberg;
-       * change seconf strlen call from strlen(prefix) to strlen(prog).
+       * change second strlen call from strlen(prefix) to strlen(prog).
        */
       len = strlen(prefix) + strlen(prog);
       newprog = malloc(len + 1);
@@ -1893,8 +1893,8 @@ isbranch (const char *sid)
 /*
    **  UNEDIT -- unedit a file
    **
-   **   Checks to see that the current user is actually editting
-   **   the file and arranges that s/he is not editting it.
+   **   Checks to see that the current user is actually editing
+   **   the file and arranges that s/he is not editing it.
    **
    **   Parameters:
    **           fn -- the name of the file to be unedited.

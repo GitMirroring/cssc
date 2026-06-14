@@ -32,7 +32,7 @@ AC_INIT([GNU CSSC],[1.5.0-rc3],[bug-CSSC@gnu.org],[CSSC])
 AC_CONFIG_SRCDIR([src/sccsfile.h])
 AC_CONFIG_AUX_DIR([build-aux])
 
-# Changes to AC_CONFIG_MACRO_DIRS shoulld be reflected in ACLOCAL_AMFLAGS in Makefile.am.
+# Changes to AC_CONFIG_MACRO_DIRS should be reflected in ACLOCAL_AMFLAGS in Makefile.am.
 AC_CONFIG_MACRO_DIRS([m4  unit-tests/googletest/googletest/m4])
 AC_SUBST(AUXDIR,$ac_aux_dir)
 AM_INIT_AUTOMAKE([gnits readme-alpha check-news tar-ustar subdir-objects 1.11.6])

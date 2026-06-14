@@ -52,7 +52,7 @@ public:
  * is difficult.  We just send the output to the closed file
  * descriptor (using perror()).
  *
- * We do this becauase (1) there isn't really a better option, and
+ * We do this because (1) there isn't really a better option, and
  * (2) because the output will still show up in the strace(8) output
  * if the user really needs to track down the problem.
  *

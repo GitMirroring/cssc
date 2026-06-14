@@ -25,8 +25,8 @@ brief='"-d:I: :D: :T:"'
 
 r1_5="1.5 68/12/31 23:59:59\n" # 2068: the last year we have
 r1_4="1.4 00/02/29 00:00:00\n" # Year 2000 is a leap year.
-r1_3="1.3 00/01/01 00:00:00\n" # Just after the milennium
-r1_2="1.2 99/12/31 23:59:59\n" # Just before the milennium
+r1_3="1.3 00/01/01 00:00:00\n" # Just after the millennium
+r1_2="1.2 99/12/31 23:59:59\n" # Just before the millennium
 r1_1="1.1 69/01/01 00:00:00\n" # 1969: the earliest year we have
 
 allrevs="${r1_5}${r1_4}${r1_3}${r1_2}${r1_1}"

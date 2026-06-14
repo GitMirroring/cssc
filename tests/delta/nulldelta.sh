@@ -20,7 +20,7 @@ echo '%M%' >foo
 
 ###
 ### Tests for the n flag.
-### 
+###
 # Create an SCCS file with the "n" flag turned on.
 docommand n1 "${admin} -ifoo $s" 0 "" ""
 docommand n2 "${admin} -fn $s" 0 "" ""
@@ -39,11 +39,11 @@ docommand n5 "${prs} -r2.1 -d:I: $s" 0 "2.1\n" IGNORE
 # Check that a null delta was made for release 3, at all.
 docommand n6 "${prs} -r3.1 -d:I: $s" 0 "3.1\n" IGNORE
 
-## TODO: also ceck the deltas are in the right order.
+## TODO: also check the deltas are in the right order.
 
-# Check some details about that release.  The comment is 
+# Check some details about that release.  The comment is
 # "AUTO NULL DELTA", no deltas were included or excluded;
-# one delta was ignored; the predecessor sequence number must be 1; 
+# one delta was ignored; the predecessor sequence number must be 1;
 # the sequence number of this delta must be 2, and the type must be 'D',
 # that is, a normal delta.
 docommand n7 "${prs} -r2.1 '-d:C:|:DI:|:DP:|:DS:|:DT:' $s" 0 \
@@ -52,7 +52,7 @@ docommand n7 "${prs} -r2.1 '-d:C:|:DI:|:DP:|:DS:|:DT:' $s" 0 \
 ###
 ### Cleanup and exit.
 ###
-rm -rf test 
+rm -rf test
 remove foo $s $g $p [zx].$g command.log
 
 success

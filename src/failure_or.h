@@ -81,7 +81,7 @@ class FailureOr
   {
   }
 
-  // Alow copying where T is std::unique_ptr<Q>.
+  // Allow copying where T is std::unique_ptr<Q>.
   FailureOr(FailureOr&& source)
     : value_(std::move(source.value_)),
       fail_(source.fail_)

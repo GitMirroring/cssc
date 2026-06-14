@@ -46,7 +46,7 @@
 
 // This system (uuencoding) will not work on non-ascii machines,
 // because it assumed that there is a block of printable characters
-// following the space charcter in the execution character set.
+// following the space character in the execution character set.
 //
 // Octal is quite convenient for thinking about uuencoding since
 // two octal digits make six bits.

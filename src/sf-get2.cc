@@ -306,7 +306,7 @@ sccs_file::find_next_sid(sid requested, sid got,
           /* If 4 components were specified, then we don't care if the
            * current release is not the highest release.  If we
            * specified that we want to check 1.2.1.1 out for editing
-           * and in fact 1.2.1.2 alredy exists, we should just fail,
+           * and in fact 1.2.1.2 already exists, we should just fail,
            * rather than making a branch.
            */
           not_trunk_top = false;

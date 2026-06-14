@@ -36,7 +36,7 @@ bad() {
 # test_bin:
 # Usage:   test_bin LABEL <contents>
 #
-# create a flie containing the specified argument and check
+# create a file containing the specified argument and check
 # that it is encoded as a binary file.
 test_bin() {
 label="$1"

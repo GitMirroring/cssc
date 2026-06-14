@@ -57,7 +57,7 @@ then
       else
           # -n option works even though -e does not.
           # This is unfortunate since the test scripts assume
-          # in places tha ability to expand escape codes.
+          # in places the ability to expand escape codes.
           # Send message to STDERR because I want to investigate.
           #
           # According to Marty Leisner <leisner@sdsp.mc.xerox.com>,

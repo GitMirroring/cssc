@@ -382,9 +382,9 @@ sccs_file_body_scanner::delta(const std::string& dname,
 
 	      do
 		{
-		  // decide what to do with this line.
-		  // process() also emits the neccesary command
-		  // (insert, delete, end).
+		  // decide what to do with this line.  process() also
+		  // emits the necessary command (insert, delete,
+		  // end).
 		  action = dstate.process(out, new_seq);
 		  switch (action)
 		    {

@@ -19,7 +19,7 @@
  * CSSC was originally based on MySC, by Ross Ridge, which was
  * placed in the Public Domain.
  *
- * Functions for spliting strings.
+ * Functions for splitting strings.
  *
  */
 #ifndef CSSC_L_SPLIT_H

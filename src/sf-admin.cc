@@ -23,7 +23,7 @@
  *
  *
  * Members of the class sccs_file for performing creation and
- * adminstration operations on the SCCS file.
+ * administration operations on the SCCS file.
  *
  */
 
@@ -44,7 +44,7 @@
 /* #define ADMIN_MERGE_LOCKED_RELEASES if you want
  * admin -fl1 s.foo ;  admin -fl2 s.foo
  * to result in both releases 1 and 2 being locked;
- * if you do not deifne this, the -fl option will
+ * if you do not define this, the -fl option will
  * implicitly clear any previous list of locked releases.
  */
 #undef ADMIN_MERGE_LOCKED_RELEASES

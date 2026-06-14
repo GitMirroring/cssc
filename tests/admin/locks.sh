@@ -23,47 +23,47 @@ docommand k1 "${admin} -ifoo $s" 0 "" ""
 ## Resolution: None
 ## Bug Group: defect
 ## Priority: 5
-## Summary: "admin -dla" crashs
-## 
+## Summary: "admin -dla" crashes
+##
 ## Details: if you do:
-## 
+##
 ##         admin -dla /usr/local/sccs/tmp/Xmt
-## 
+##
 ## to unlock all versions, admin will crash.
-## 
+##
 ## "-d" ends up invoking sf-admin.cc : sccs_file::admin, and the loop
 ## associated with unset_flags. (I believe that the loop associated
 ## with set_flags also has the same problem). A check is made to
-## distingish "-da" from "-d#", and for the case of "-da", the code
+## distinguish "-da" from "-d#", and for the case of "-da", the code
 ## will do:
-## 
+##
 ##               flags.all_locked = 0;
 ##               flags.locked = NULL;
-## 
+##
 ## Note that flags.locked is a release_list, so this will invoke
-## 
+##
 ##         release_list::release_list(0)
-## 
+##
 ## The constructor in rel_list.cc reads:
-## 
+##
 ##         release_list::release_list(const char *s)
 ##         {
 ##           ASSERT(NULL != s);
-## 
+##
 ## I believe that the null case should be treated as a
-## 
+##
 ##         release_list::release_list()
-## 
+##
 ## so I made the following change:
-## 
+##
 ##         release_list::release_list(const char *s)
 ##         {
 ##           if (NULL == s) {
 ##              return;
 ##           }
-## 
+##
 ## which emulates a class creation with no arguments.
-## 
+##
 
 docommand k2 "${vg_admin} -dla $s" 0 IGNORE IGNORE
 
@@ -73,7 +73,7 @@ docommand k3 "${vg_admin} -fla $s" 0 IGNORE IGNORE
 # Now, all revisions are locked.   A 'get' must fail.
 docommand k4 "${get} -e $s" 1 IGNORE IGNORE
 
-# Remove the locks and try again. (This test is a repeat of 
+# Remove the locks and try again. (This test is a repeat of
 # test k2, but is required for the next test to work).
 docommand k5 "${vg_admin} -dla $s" 0 IGNORE IGNORE
 docommand k6 "${get} -e $s" 0 IGNORE IGNORE
@@ -84,7 +84,7 @@ docommand k7 "${vg_admin} -fl2 $s" 0 IGNORE IGNORE
 docommand k8 "${get} -e $s" 0 IGNORE IGNORE
 
 # we may not have "prt".
-# docommand k8a "${prt} -f $s | 
+# docommand k8a "${prt} -f $s |
 #       sed -n -e 's/.*releases//p'" 0 "\t2\n" IGNORE
 docommand k8a "${prs} -d:LK: $s" 0 "2\n" IGNORE
 
@@ -118,7 +118,7 @@ remove $s $g $p
 ###
 ### Cleanup and exit.
 ###
-rm -rf test 
+rm -rf test
 remove foo $s $g $p [zx].$g command.log
 
 success

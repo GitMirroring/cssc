@@ -85,7 +85,7 @@ check_id_keywords(const char *s, size_t len)
 
   while (len-- > 0)
     {
-      // test the % characters first to avoid some unneccesary function calls.
+      // test the % characters first to avoid some unnecessary function calls.
       if ('%' == s[0] && s[1] && '%' == s[2] && is_id_keyword_letter(s[1]))
 	return true;
       ++s;

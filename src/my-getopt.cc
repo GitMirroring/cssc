@@ -36,7 +36,7 @@
  * the traditional Unix behaviour.  You can define
  * INCOMPATIBLE_OPTIONS if you wish to support a new option that has
  * the traditional Unix semantics rather than the normal SCCS
- * semantics, but I [jay@gnu.org] do not reccomend this.
+ * semantics, but I [jay@gnu.org] do not recommend this.
  */
 #undef INCOMPATIBLE_OPTIONS
 
