@@ -5,8 +5,9 @@
 . ../common/test-common
 
 g=foo
-s=s.$g
-remove "$s" "$g" "p.$"g "z.$g"
+s=s."${g}"
+
+remove "$s" "$g" "p.${g}" "z.${g}"
 
 # Create an SCCS file.
 docommand p1 "${admin} -n $s"    0 "" IGNORE
@@ -63,5 +64,5 @@ docommand p10 "${delta} -p -y $s" 0 \
 0 unchanged
 " IGNORE
 
-remove "$s" "$g" "p.$"g "z.$g"
+remove "$s" "$g" "p.${g}" "z.${g}"
 success

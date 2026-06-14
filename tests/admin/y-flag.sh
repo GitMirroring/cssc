@@ -11,24 +11,23 @@
 . ../common/real-thing
 
 g=bar
-s=s.${g}
-z=z.${g}
+s="s.${g}"
+z="z.${g}"
 
-remove $s $g $z foo command.log last.command core
+remove "${s}" "${g}" "${z}" foo command.log last.command core
 remove expected.stderr got.stderr expected.stdout got.stdout
 
 # Figure out if we should expect the thing to work.
-if ${admin} -n -i/dev/null -fyM "${s}" >/dev/null 2>&1 || $TESTING_CSSC
+if ${admin} -n -i/dev/null -fyM "${s}" >/dev/null 2>&1 || ${TESTING_CSSC}
 then
     test -e "${s}" || miscarry "admin program '${admin}' silently did nothing"
     echo "We are testing an SCCS implementation that supports the y flag.  Good."
     remove "${s}"
 else
     echo "WARNING: some test have been skipped since I think that ${admin} does not support the 'y' flag."
-    remove $s $g $z foo command.log last.command core
+    remove "${s}" "${g}" "${z}" foo command.log last.command core
     remove expected.stderr got.stderr expected.stdout got.stdout
     success
-    exit 0
 fi
 
 
@@ -39,9 +38,6 @@ test -e "${s}" && miscarry initial conditions were incorrectly set up
 
 docommand Y1 "${admin} -ifoo ${s}" 0 "" IGNORE
 remove foo
-
-
-# docommand A2 "${admin} -dy $s" 0 IGNORE IGNORE
 
 # default situation is that everything is expanded.
 docommand --stdout_is_file Y2 "${vg_get} -p -r1.1 ${s}" 0 inputs/foo.kw-expansion.default.binary IGNORE
@@ -104,7 +100,7 @@ z="z.${g}"
 remove "${g}" "${s}" "${z}"
 copy y-flag-quux-initial inputs/quux.initial.txt "${g}"
 
-docommand YA1 "${admin} -i"${g}" ${s}" 0 "" IGNORE
+docommand YA1 "${admin} -i${g} ${s}" 0 "" IGNORE
 remove "${g}"
 
 # Delete the y flag (so all keywords are expanded)

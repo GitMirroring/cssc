@@ -14,14 +14,12 @@ END {
 }
 ' | {
     IFS=":"
-    while read dir paths
+    while read -r dir paths
     do
         (
             IFS=" "
-            cd "${dir}" &&
-                shellcheck -f gcc -x \
-                           -e SC2121,SC2006,SC2119,SC2012 \
-                           ${paths}
+	    # shellcheck disable=SC2086
+            cd "${dir}" && shellcheck -f gcc -x -e SC2121,SC2006,SC2119,SC2012 ${paths}
         )
     done
 }

@@ -16,7 +16,7 @@ do_coverage () {
 
     for objfile
     do
-      gcov $objfile
+      gcov "${objfile}"
     done
 }
 
@@ -26,11 +26,11 @@ get_file_info () {
 
 
 do_hits () {
-    get_file_info "$@" | egrep -c  "^ *[0-9]+ *$"
+    get_file_info "$@" | grep -E -c  "^ *[0-9]+ *$"
 }
 
 do_misses () {
-    get_file_info "$@" | egrep -c  "^ *###### *$"
+    get_file_info "$@" | grep -E -c  "^ *###### *$"
 }
 
 do_all2 () {
@@ -109,7 +109,7 @@ These tests were run at $NOW
 <tr><th> Misses </th><th> Hits </th><th> Filename </th></tr>
 
 EOF
-    while read m h f
+    while read -r m h f
     do
       printf "<tr><td>%d</td><td>%d</td><td>%s</td></tr>\n" \
 	  "$m" "$h" "$f"

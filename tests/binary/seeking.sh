@@ -12,7 +12,7 @@ then
 else
     echo "Skipping these tests -- no binary file support."
     exit 0
-fi 
+fi
 
 
 
@@ -33,11 +33,11 @@ bad() {
 }
 
 
-# test_bin: 
+# test_bin:
 # Usage:   test_bin LABEL <contents>
 #
 # create a flie containing the specified argument and check
-# that it is encoded as a binary file.  
+# that it is encoded as a binary file.
 test_bin() {
 label="$1"
 echo_nonl "${label}"...
@@ -69,7 +69,7 @@ then
 		remove diffs
 		good
 	    else
-		# We failed to get the data back correctly from the 
+		# We failed to get the data back correctly from the
 		# SCCS file.
 		bad "$label data lost (see file 'diffs') in ${cmd}".
 	    fi
@@ -91,9 +91,13 @@ s=s.$g
 z=z.$g
 x=z.$g
 p=p.$g
-files="$s $z $x $p"
 
-remove $files long-text-file infile ctrl-A-file no-newline ctrl-A-end
+clean_up_test_files() {
+    remove "${s}" "${z}" "${x}" "${p}"
+}
+
+clean_up_test_files
+remove long-text-file infile ctrl-A-file no-newline ctrl-A-end
 remove command.log log  base [sxzp]."$g" errmsg "$g"
 
 expect_fail=false
@@ -104,12 +108,12 @@ remove long-text-file
 #../../testutils/yes "this is a text file" | nl | head -1000 >long-text-file
 if test -s long-text-file
 then
-    true 
+    true
 else
     miscarry could not create long-text-file.
 fi
 
-remove no-newline 
+remove no-newline
 echo_nonl "no newline here" > no-newline
 remove ctrl-A-file
 echo_nonl \
@@ -120,7 +124,7 @@ echo_nonl \
     "This file ends with a ctrl-A.\n\001" > ctrl-A-end
 
 
-# Make sure that we correctly decide to encode the files, 
+# Make sure that we correctly decide to encode the files,
 # and that we don't lose data.
 
 # First make sure that forcing binary mode works.
@@ -152,9 +156,9 @@ if ( "${admin}" -V 2>&1 ; echo umsp )  | grep CSSC >/dev/null
 then
     # Do the tests that SCCS does not pass.
     use_stdin=false
-    
+
     test_bin s5 no-newline		# Real SCCS fails this one.
-    
+
     remove infile ; cat long-text-file no-newline > infile
     test_bin s6 infile
 
@@ -171,6 +175,7 @@ else
     echo "Not running tests on CSSC; Some tests have been been omitted"
 fi
 
-remove $files long-text-file infile ctrl-A-file no-newline ctrl-A-end
+remove long-text-file infile ctrl-A-file no-newline ctrl-A-end
+clean_up_test_files
 remove command.log log  base errmsg "$g"
 success
