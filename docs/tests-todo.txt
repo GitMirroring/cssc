@@ -137,7 +137,7 @@ rmdel
         Use of rmdel -r with an invalid SID
         Use of rmdel -r with a valid but nonexistent SID
         Use of rmdel with no SCCS file specified.
-        Delete a delta which is derived from one which delted stuff
+        Delete a delta which is derived from one which deleted stuff
         Delete a SID which has a derived SID (which should be an error)
         Delete a SID which has no successor but is included by
         some other delta
@@ -261,7 +261,7 @@ CSSC only
 
 Weird Stuff
 ===========
-        Corrupt diff ouptut
+        Corrupt diff output
         Non-seekable s-file (!)
 
 

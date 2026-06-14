@@ -231,4 +231,4 @@ filelock.h:50: storage size of `_ZTI9file_lock' isn't known
 I don't know how to fix this error in any other way than to use GCC
 version 2.95 instead, as described above.  CSSC is know to work on
 other systems with GCC 4.4, but I have no more up-to-date information
-about the situaion on Mac OS X.
+about the situation on Mac OS X.

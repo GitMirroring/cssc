@@ -36,7 +36,7 @@ provided in the file "docs/Platforms".
 
  --disable-binary
 
-    Turns off suport for creating encoded ("binary") SCCS files.
+    Turns off support for creating encoded ("binary") SCCS files.
     CSSC will still handle these as input, but will never create one,
     when this option is used.
 
@@ -67,7 +67,7 @@ provided in the file "docs/Platforms".
     By default, valgrind will be used if it is available.  If you
     would like to disable valgrind at configure time, pass the
     --disable-valgrind option.  To disable it afterward, you can
-    simply set the enviroment variable CSSC_DISABLE_VALGRIND.
+    simply set the environment variable CSSC_DISABLE_VALGRIND.
 
     Occasionally a system binary (for example a shell) which is used
     to run the tests will have a behaviour that Valgrind doesn't like.
@@ -81,7 +81,7 @@ provided in the file "docs/Platforms".
  You will probably need to compile the software with GNU make.
 
  The default installation directory for the binaries is
- /usr/local/libexec/cssc, except for the sccs comand, which gets
+ /usr/local/libexec/cssc, except for the sccs command, which gets
  installed in /usr/local/bin.
 
  If you want to change this, you will need to read the file INSTALL.
@@ -114,7 +114,7 @@ provided in the file "docs/Platforms".
  The unit tests are much newer than the regression tests and for the
  moment they have lower test coverage.
 
- To run all the tests (unit tests and regresion tests), run "make
+ To run all the tests (unit tests and regression tests), run "make
  check" in the top-level directory:
 
  if make check 2>&1 | tee make.log

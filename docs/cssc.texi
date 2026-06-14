@@ -5,7 +5,7 @@
 
 @dircategory Miscellaneous
 @direntry
-* cssc: (cssc).		The GNU work-alike replacement for SCCS.
+* cssc: (cssc).         The GNU work-alike replacement for SCCS.
 @end direntry
 
 @copying
@@ -64,23 +64,23 @@ This is edition @value{EDITION}, for CSSC Version @value{VERSION}.
 @end ifnottex
 
 @menu
-* Overview::		   Preliminary information.
-* Interface::		   How to use the suite.
+* Overview::               Preliminary information.
+* Interface::              How to use the suite.
 * Invoking CSSC Programs:: How to run the individual CSSC programs.
-* Filenames::		   Names of files used by CSSC.
+* Filenames::              Names of files used by CSSC.
 @c add chapter on branches and included/excluded deltas?
 * File Format::            Description of the @sc{sccs} file format
 * Interoperability::       Interoperating with other versions of @sc{sccs}.
 * Environment::            How environment variables affect CSSC.
-* Incomplete::		   Missing Features.
+* Incomplete::             Missing Features.
 * Year 2000 Issues::       Status of CSSC with regard to the Millennium.
 * Testing::                How to run the test suite and write new cases.
-* Problems::		   Reporting bugs.
-* Copying::		   How you can copy and share @code{CSSC}.
+* Problems::               Reporting bugs.
+* Copying::                How you can copy and share @code{CSSC}.
 * GNU Free Documentation License::  Copying and sharing this manual.
-* BSD Code::		   Parts of the code are from BSD.
-* Glossary::	           Definition of some terms relating to CSSC.
-* Concept Index::	   Index of concepts.
+* BSD Code::               Parts of the code are from BSD.
+* Glossary::               Definition of some terms relating to CSSC.
+* Concept Index::          Index of concepts.
 @end menu
 
 @node Overview, Interface, Top, Top
@@ -282,7 +282,7 @@ fail.  If you want to set the @var{v} flag when creating a history
 file but there are no appropriate @sc{mr} numbers, you can specify an
 @sc{mr} list containing just white space@footnote{Versions of CSSC up
 to and including 1.3.0 used to allow the argument of @samp{-m} to be
-ommitted, and required the @sc{mr} list to be non-empty if specified
+omitted, and required the @sc{mr} list to be non-empty if specified
 at all.  However, this was incompatible with other versions of
 @sc{sccs}, so CSSC was changed to be more compatible.}.
 
@@ -1012,12 +1012,12 @@ really only makes a difference when there is a branch in the file.
 For example, if delta 1.5 includes 1.3.1.5, then the gotten file will
 include the contents of versions 1.1 through to 1.5, plus the contents
 of the 1.3.1 branch up to and including 1.3.1.5.  Lines which were
-(say) added in 1.2 but delted in 1.3.1.1 will not appear in the
+(say) added in 1.2 but deleted in 1.3.1.1 will not appear in the
 output, since we have included a delta that deletes them.
 
 @subsection Excluded Deltas
 Excluding a delta is, unsurprisingly, more or less the opposite of
-including one.  The exclusion of a delta supercedes the inclusion of a
+including one.  The exclusion of a delta supersedes the inclusion of a
 delta.  One might specify, for example, that delta 1.6 should exclude
 delta 1.5 (for example to back out of any changes it made).  Exclusion
 can also be used to reverse the effect of an inclusion.  Suppose that
@@ -1028,7 +1028,7 @@ the 1.3.1 branch that would have been used if we had gotten delta 1.5.
 
 @subsection Ignored Deltas
 Ignored deltas are ``silent''; that is, lines which are added by a
-delta which is (explicitly or implcitly) included will not appear in
+delta which is (explicitly or implicitly) included will not appear in
 the gotten file.  Conversely, lines deleted by an ignored delta will
 still appear in the gotten file.
 
@@ -1303,7 +1303,7 @@ sequence numbers are printed.  This means it's difficult to tell from
 the result of @samp{:DI:} whether the sequence numbers after the last
 @samp{/} were excluded or ignored.  @xref{SCCS Version Differences},
 for a brief description of how @samp{:DI:} expands to different things
-on different @sc{sccs} implmentations.  If you need reliable
+on different @sc{sccs} implementations.  If you need reliable
 information, then you will need to use something like
 @samp{:Dn:/:Dx:/:Dg:} explicitly.
 
@@ -1531,10 +1531,10 @@ Print the list of users and group IDs authorised to make deltas, one per
 line.
 
 @item -y@var{SID}
-Print only information for deltas as new as the specified @sc{sid}.  If
-the argument part is empty, that is, the option used is simply
-@option{-y}, the most recent delta is selected.   The oder in which delta
-information is stored within the @sc{sccs} file is such that the
+Print only information for deltas as new as the specified @sc{sid}.
+If the argument part is empty, that is, the option used is simply
+@option{-y}, the most recent delta is selected.  The order in which
+delta information is stored within the @sc{sccs} file is such that the
 @sc{sid} selected by this option will be the last one printed.
 
 If the @option{-y} option is used in conjunction with either the @option{-c}
@@ -1644,7 +1644,7 @@ or doesn't work, and the fix is simple.  In the author's opinion, it's
 almost always better to be honest about mistakes, and just make a new
 delta for the fixed version.
 
-The @sc{sid} of a removed delta is soon re-used by @code{delta}, usually
+The @sc{sid} of a removed delta is soon reused by @code{delta}, usually
 for the fixed version.
 
 The @code{rmdel} command takes only one option, @option{-r}, which
@@ -1889,7 +1889,7 @@ behaviour in these circumstances, and do not include in the gotten
 file any lines apparently inserted after the date of the delta which
 has been selected.  This applies to @code{get} but more importantly
 also applies to the temporary file generated by @sc{delta} which is
-compared with the working copy of tyhe file.  Once this has happened
+compared with the working copy of the file.  Once this has happened
 there is no way to recover from this problem other than to hand-edit
 the @sc{sccs} file.
 
@@ -2128,9 +2128,9 @@ It is @emph{not authoritative}, and may not match some of the
 peculiarities of your vendor's implementation.
 
 @menu
-* File Format Overview::	An overview of the file format
-* The Header::			Format of the header of @sc{sccs} files
-* The Body::			Format of the body of @sc{sccs} files
+* File Format Overview::        An overview of the file format
+* The Header::                  Format of the header of @sc{sccs} files
+* The Body::                    Format of the body of @sc{sccs} files
 @end menu
 
 @node File Format Overview, The Header, , File Format
@@ -2391,7 +2391,7 @@ of @sc{sccs}.
 
 The @samp{e} flag is a boolean flag but is stored within the @sc{sccs}
 file with a value, as shown in the example above.  When @sc{cssc}
-initially writes the @sc{sccs} file header for a new @sc{sccs} fiel
+initially writes the @sc{sccs} file header for a new @sc{sccs} file
 created with @code{admin -i}, it does not know if the initial body of
 the file is binary or not, so @samp{^Af f e 0} is written into the
 header and if the file turns out to need encoding, @code{admin} will
@@ -2522,7 +2522,7 @@ but do not need to be turned off.
 
 @menu
 * Binary File Support::      Enabling or disabling support for binary files.
-* Executable File Support::  Control over the excutable bits in file modes.
+* Executable File Support::  Control over the executable bits in file modes.
 * BitKeeper::                Limited support for Bitkeeper files exists.
 * Maximum Line Length::      Limiting the length of lines in the SCCS file.
 * Limitations of diff::      Diff has limits too, on many non-GNU systems.
@@ -2562,7 +2562,7 @@ This should be contrasted with support for @emph{executable} files,
 which have a specific Unix file mode bit set (see the manual page for
 @code{chmod} for more details).  Unix executable files may or may not
 be binary files.  It's common to control shell scripts with
-@sc{cssc}, for example.  Shell scripts are normaly executable but not
+@sc{cssc}, for example.  Shell scripts are normally executable but not
 binary.
 
 @cindex SCO
@@ -2947,7 +2947,7 @@ entirely.  @xref{Overview}.
 
 @item Validation
 The @sc{cssc} implementation of @code{val} implements some checks that
-other implementations lack.  Howver, it is not complete, and so there
+other implementations lack.  However, it is not complete, and so there
 are also checks that other implementations make that @sc{cssc} does
 not.
 
@@ -2990,7 +2990,7 @@ Several environment variables control the behaviour of @sc{cssc}.  This
 section explains what these variables are and how they work.
 
 @menu
-* Child Processes::	    CSSC tools run other programs occasionally.
+* Child Processes::         CSSC tools run other programs occasionally.
 * Configuration Variables:: Variables that turn features on or off.
 * Other Variables::         Miscellaneous other variables you might use.
 @end menu
@@ -3162,7 +3162,7 @@ is running set-user-id or set-group-id.
 @cindex missing features
 
 @menu
-* Missing Features::	Some features of SCCS are not provided.
+* Missing Features::    Some features of SCCS are not provided.
 * Known Problems::      Known problems with CSSC.
 * Unemulated Features:: Problems with SCCS that CSSC doesn't share.
 @end menu
@@ -3531,7 +3531,7 @@ test-common: .././common/test-common
 
 /bin/sh -ec 'cd admin && for i in *.sh ; \
 do \
-	/bin/sh $i || break; \
+        /bin/sh $i || break; \
 done'
 C1...passed
 C2...passed
@@ -3957,10 +3957,10 @@ documentation are covered by the following license:-
 @sp 1
 @quotation
 Copyright (C) 1998, 1999 @*
-	Free Software Foundation, Inc.  All rights reserved.
+        Free Software Foundation, Inc.  All rights reserved.
 
 Copyright (c) 1980, 1993 @*
-	The Regents of the University of California.  All rights reserved.
+        The Regents of the University of California.  All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions
@@ -4071,8 +4071,8 @@ Multiple lines of development are called branches; a branch is created
 by editing a version of a file which already has a derived version
 (e.g. editing version 1.2 when version 1.3 already exists).
 
-@item checkin comment
-The @code{delta} program asks for a checkin comment; this is a comment
+@item check-in comment
+The @code{delta} program asks for a check-in comment; this is a comment
 which summarised the nature of the change which has just been made to
 the file.
 

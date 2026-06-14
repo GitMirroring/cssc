@@ -68,7 +68,7 @@ Wed Nov 12 00:00:44 1997  James Youngman  <jay@gnu.org>
 
         * Write test cases for delta's -g, -n, -p, -r, -s flags.
 
-        * Write test cases for get's -i, -l, -lp flags.
+        * Write test cases for the -i, -l, -lp flags of get.
 
 Mon Aug  4 23:33:16 1997  James Youngman  <jay@gnu.ai.mit.edu>
 

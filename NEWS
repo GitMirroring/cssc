@@ -91,8 +91,8 @@ New in CSSC-1.3.1, 2011-05-10
           header is used when the -p option is specified and when
           it's not.  The new behaviour matches OpenSolaris 2009.06.
 
-	* The ordering of the ouput of "sccs unedit" is now different;
-          the new order matches OpenSolaris 2009.06.
+	* The ordering of the output of "sccs unedit" is now
+          different; the new order matches OpenSolaris 2009.06.
 
 	* "get -L" will now send the ID of the gotten SID to stderr,
           which better matches OpenSolaris 2009.06.  The indentation
@@ -255,7 +255,7 @@ New in CSSC-0.15alpha-pl0, 2002-12-08 (date from SourceForge)
 
 	* sccs get - all g-files processed after a failing file are deleted.
 
- 	* Fixed compilation bug - we were using idigit() in reveral places but
+ 	* Fixed compilation bug - we were using idigit() in several places but
           not including <ctype.h>. (SourceForge bug 623164).
 
 	* The test suite now passes when run against a genuine version of
@@ -282,7 +282,7 @@ New in CSSC-0.14alpha-pl0, 2002-04-03
 
 	* Include a section in the manual explaining in more detail some of
 	  the differences in between other SCCS versions (and which
-	  funcitonality CSSC follows in each case).
+	  functionality CSSC follows in each case).
 
 	* More test cases (we are now tracking test suite
 	  coverage with "gcov" and devising test cases to
@@ -330,7 +330,7 @@ New in CSSC-0.14alpha-pl0, 2002-04-03
 
 New in CSSC-0.13alpha-pl1, 2001-11-25
 
-	* get -e should re-use deltas that have been removed
+	* get -e should reuse deltas that have been removed
 	  (SF bug ID 450900, new test case tests/get/removed-delta.sh)
 
 	* Fixed Debian GNU/Linux bug #120080 (that sccs sccsdiff fails to
@@ -476,7 +476,7 @@ New in CSSC-0.11alpha-pl0, 1999-04-18
 
 New in CSSC-0.10beta-pl1, 1999-03-21
 
-	* Eliminated some compiler warnings for bsd/sccs.c; addd
+	* Eliminated some compiler warnings for bsd/sccs.c; added
           CREDITS.short.txt.  No other significant user-visible changes.
 
 New in CSSC-0.10beta-pl0, 1999-03-20
@@ -516,7 +516,7 @@ New in CSSC-0.09alpha-pl2, 1998-12-10
 	* "admin -z" now works better; it doesn't complain if the s-file is
           read-only (because it should be read only in any case).
 
-	* It is now posible to unset the "m" flag using admin.  Previously
+	* It is now possible to unset the "m" flag using admin.  Previously
 	  this was not possible, due to an oversight.
 
 	* An implementation of "val" is now included.  It is not complete.
@@ -610,7 +610,7 @@ New in CSSC-0.07alpha-pl1, 1998-06-08
 
 New in CSSC-0.07alpha-pl0, 1998-06-06
 
-	* "get -e" should now (again) re-use deltas that have been
+	* "get -e" should now (again) reuse deltas that have been
            removed with rmdel.
 
 	* Tests for sccs(1) in the test suite.
@@ -807,7 +807,7 @@ New in CSSC-0.02-devel-pl6, 1997-09-27
 	* Added documentation for prs.
 
 	* Fixes to get (keywords %I% %R% %L% %B% %S%, plus
-	  correct subsitution when the "-c" option is used).
+	  correct substitution when the "-c" option is used).
 
 New in CSSC-0.02-devel-pl5, 1997-07-04
 
