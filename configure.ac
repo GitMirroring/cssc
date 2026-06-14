@@ -374,13 +374,11 @@ fi
 dnl Look for declarations in headers.
 
 dnl src/sccs.c uses sys_siglist[], if available.
-AC_CHECK_DECLS([sys_siglist],[],[],[#include <signal.h>
+AC_CHECK_DECLS([sys_siglist],[],[],[
+#include <signal.h>
 /* NetBSD declares sys_siglist in unistd.h.  */
-#ifdef HAVE_UNISTD_H
-# include <unistd.h>
-#endif
+#include <unistd.h>
 ])
-
 
 dnl fatalsig.cc uses signal handlers
 m4_warn([obsolete],

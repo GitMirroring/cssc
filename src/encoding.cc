@@ -29,7 +29,7 @@
 #include <config.h>
 
 #include <utility>
-#include "string.h"
+#include <string.h>
 #include "cssc.h"
 #include "bodyio.h"
 #include "cssc-assert.h"
