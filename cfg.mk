@@ -12,3 +12,8 @@ _makefile_at_at_check_exceptions = ' && !/PTHREAD_CFLAGS/ && !/PTHREAD_LIBS/'
 
 sc_shellcheck:
 	@$(VC_LIST) | $(GREP) '[.]sh$$' | xargs readlink -f | $(srcdir)/$(_build-aux)/shell_check.sh
+
+release_archive_dir = ../..//tarfiles/public-releases/
+
+news-check-regexp = '^New in CSSC-$(VERSION_REGEXP), $(today)'
+news-check-regexp-prev = ^New in CSSC-$(PREV_VERSION_REGEXP), [0-9-]*
