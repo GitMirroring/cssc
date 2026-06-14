@@ -39,10 +39,7 @@
 namespace
 {
 
-/* The expansion of RETSIGTYPE is automatically decided by the configure
- * script; its value is define in config.h.
- */
-typedef RETSIGTYPE (*sighandler)(int);
+typedef void (*sighandler)(int);
 
 
 /* fatal_signals_to_trap contains a list of signals whose
@@ -110,7 +107,7 @@ void reset_sig_handlers( void )
  * This is the signal handler function for fatal signals.
  * It does some cleanup and exits the program.
  */
-static RETSIGTYPE
+static void
 handle_fatal_sig(int /* whatsig */ )
 {
   /* Reset the signal handler to the original setting. */
