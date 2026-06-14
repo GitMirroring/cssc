@@ -191,7 +191,7 @@ sccs_file::prepare_seqstate_1(seq_state &state, seq_no seq)
 cssc::Failure
 sccs_file::do_get(const string& gname,
 		  class seq_state &state,
-		  struct subst_parms &parms,
+		  struct subst_parms &substitution_parameters,
 		  bool do_kw_subst,
 		  int show_sid, int show_module, int debug,
 		  bool no_decode,
@@ -210,13 +210,13 @@ sccs_file::do_get(const string& gname,
   else
     outputfn = output_body_line_text;
 
-  auto subst = [this, &parms](const char *start, struct delta const& gotten_delta,
+  auto subst = [this, &substitution_parameters](const char *start, struct delta const& gotten_delta,
 			      bool force_expansion) -> cssc::Failure
     {
-      return this->write_subst(start, &parms, gotten_delta, force_expansion);
+      return this->write_subst(start, &substitution_parameters, gotten_delta, force_expansion);
     };
   return body_scanner_->get(gname, *delta_table_, subst,
-			    outputfn, flags.encoded, state, parms,
+			    outputfn, flags.encoded, state, substitution_parameters,
 			    do_kw_subst, debug, show_module, show_sid);
 }
 

@@ -197,22 +197,22 @@ sccs_file::add_delta(const std::string& gname,
   FILE *get_out;
   if (1)
     {
-      cssc::FailureOr<FILE*> fof = fcreate(name_.dfile(), CREATE_EXCLUSIVE | xmode);
-      if (fof.ok())
+      cssc::FailureOr<FILE*> failure_or_file = fcreate(name_.dfile(), CREATE_EXCLUSIVE | xmode);
+      if (failure_or_file.ok())
 	{
-	  get_out = *fof;
+	  get_out = *failure_or_file;
 	}
       else
 	{
 	  remove(name_.dfile().c_str());
-	  auto fof2 = fcreate(name_.dfile(), CREATE_EXCLUSIVE | xmode);
-	  if (fof2.ok())
+	  auto failure_or_file2 = fcreate(name_.dfile(), CREATE_EXCLUSIVE | xmode);
+	  if (failure_or_file2.ok())
 	    {
-	      get_out = *fof2;
+	      get_out = *failure_or_file2;
 	    }
 	  else
 	    {
-	      const Failure f = cssc::FailureBuilder(fof2.fail())
+	      const Failure f = cssc::FailureBuilder(failure_or_file2.fail())
 		.diagnose() << "cannot create file " << name_.dfile();
 	      errormsg("%s", f.to_string().c_str());
 	      return false;
@@ -223,11 +223,11 @@ sccs_file::add_delta(const std::string& gname,
 
   auto w = cssc::optional<std::string>();
   const struct delta blankdelta;
-  struct subst_parms parms(name_.dfile(), get_module_name(), get_out,
-			   w, blankdelta,
-                           0, sccs_date());
+  struct subst_parms substitution_parameters(name_.dfile(), get_module_name(), get_out,
+					     w, blankdelta,
+					     0, sccs_date());
   seq_state gsstate(sstate);
-  cssc::Failure got = do_get(name_.dfile(), gsstate, parms, /*do_kw_subst=*/0,
+  cssc::Failure got = do_get(name_.dfile(), gsstate, substitution_parameters, /*do_kw_subst=*/0,
 			     /*show_sid=*/0, /*show_module=*/0, /*debug=*/0,
 			     GET_NO_DECODE, /*for_edit=*/false);
   if (!got.ok())
@@ -373,10 +373,10 @@ sccs_file::add_delta(const std::string& gname,
   FILE *out;
   if (1)
     {
-      cssc::FailureOr<FILE*> fof = start_update(new_delta);
-      if (!fof.ok())
+      cssc::FailureOr<FILE*> failure_or_file = start_update(new_delta);
+      if (!failure_or_file.ok())
 	return false;
-      out = *fof;
+      out = *failure_or_file;
     }
 
   delta_result result =

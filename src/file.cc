@@ -648,9 +648,9 @@ file_lock::file_lock(const std::string& zname)
     name_(zname)
 {
   ASSERT(name_ == zname);
-  cssc::FailureOr<FILE*> fof =
+  cssc::FailureOr<FILE*> failure_or_file =
     fcreate(zname, CREATE_READ_ONLY | CREATE_EXCLUSIVE | CREATE_NFS_ATOMIC);
-  if (!fof.ok())
+  if (!failure_or_file.ok())
     {
       // XXX: do not assume errno has been preserved.
       if (errno == EEXIST)
@@ -660,12 +660,12 @@ file_lock::file_lock(const std::string& zname)
           return;
         }
       lock_state_ =
-	(cssc::FailureBuilder(fof.fail())
+	(cssc::FailureBuilder(failure_or_file.fail())
 	 .diagnose() << "can't create lock file " <<  zname);
       ctor_fail_nomsg(1);
     }
 
-  FILE *f = *fof;
+  FILE *f = *failure_or_file;
   cssc::Failure done = do_lock(f);
   if (fclose_failed(fclose(f)))
     {

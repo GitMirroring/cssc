@@ -46,10 +46,10 @@ sccs_file::start_update(const delta &new_delta)
       .diagnose() << "failed to start update of output file";
     };
 
-  cssc::FailureOr<FILE*> fof = start_update();
-  if (!fof.ok())
-    return fail(fof.fail());
-  FILE *out = *fof;
+  cssc::FailureOr<FILE*> failure_or_file = start_update();
+  if (!failure_or_file.ok())
+    return fail(failure_or_file.fail());
+  FILE *out = *failure_or_file;
   cssc::Failure done = write_delta(out, new_delta);
   if (done.ok())
     done = cssc::Update(done, write(out));

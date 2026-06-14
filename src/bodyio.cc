@@ -371,51 +371,51 @@ cssc::Failure output_body_line_binary(FILE *fp, const cssc_linebuf* plb)
 
 
 cssc::Failure
-encode_file(const char *nin, const char *nout)
+encode_file(const char *input_file_name, const char *output_file_name)
 {
-  FILE *fin = fopen_as_real_user(nin, "rb");	// binary
+  FILE *fin = fopen_as_real_user(input_file_name, "rb");	// binary
   if (nullptr == fin)
     {
       return cssc::make_failure_builder_from_errno(errno)
-	.diagnose() << "failed to open \"" << nin << "\" for reading";
+	.diagnose() << "failed to open \"" << input_file_name << "\" for reading";
     }
   ResourceCleanup cleanup_in([fin]() { fclose(fin); } );
 
-  cssc::FailureOr<FILE*> fof = fcreate(nout, CREATE_EXCLUSIVE); // text
-  if (!fof.ok())
+  cssc::FailureOr<FILE*> failure_or_file = fcreate(output_file_name, CREATE_EXCLUSIVE); // text
+  if (!failure_or_file.ok())
     {
-      return cssc::FailureBuilder(fof.fail())
-	.diagnose() << "Failed to open " << nout << " for writing";
+      return cssc::FailureBuilder(failure_or_file.fail())
+	.diagnose() << "Failed to open " << output_file_name << " for writing";
     }
-  FILE *fout = *fof;
+  FILE *output_file = *failure_or_file;
 
-  ResourceCleanup cleanup_out([fout, nout]() {
-      fclose(fout);
-      remove(nout);
+  ResourceCleanup cleanup_out([output_file, output_file_name]() {
+      fclose(output_file);
+      remove(output_file_name);
     });
 
-  auto encoded = encode_stream(fin, fout);
+  auto encoded = encode_stream(fin, output_file);
   if (!encoded.first.ok())
     {
       return cssc::make_failure_builder(encoded.first)
-	.diagnose() << "read error on " << nin;
+	.diagnose() << "read error on " << input_file_name;
     }
   if (!encoded.second.ok())
     {
       return cssc::make_failure_builder(encoded.second)
-	.diagnose() << "write error on " << nout;
+	.diagnose() << "write error on " << output_file_name;
     }
 
   if (cleanup_in.disarm(), fclose_failed(fclose(fin)))
     {
       return cssc::make_failure_builder_from_errno(errno)
-	.diagnose() << "failed to close " << nin;
+	.diagnose() << "failed to close " << input_file_name;
     }
 
-  if (fclose_failed(fclose(fout)))
+  if (fclose_failed(fclose(output_file)))
     {
       return cssc::make_failure_builder_from_errno(errno)
-	.diagnose() << "failed to close " << nout;
+	.diagnose() << "failed to close " << output_file_name;
     }
 
   // Success, so don't delete the output file.

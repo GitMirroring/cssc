@@ -92,15 +92,15 @@ sccs_file::start_update() {
 
 	// The 'x' flag is a SCO extension.
 	const int x = sfile_should_be_executable() ? CREATE_EXECUTABLE : 0;
-	cssc::FailureOr<FILE *> fof = fcreate(xname, CREATE_READ_ONLY | CREATE_FOR_UPDATE | x);
-        if (!fof.ok())
+	cssc::FailureOr<FILE *> failure_or_file = fcreate(xname, CREATE_READ_ONLY | CREATE_FOR_UPDATE | x);
+        if (!failure_or_file.ok())
           {
-	    return cssc::make_failure_builder(fof.fail())
+	    return cssc::make_failure_builder(failure_or_file.fail())
 	      .diagnose() <<  xname << ": can't create temporary file for update";
           }
         else
           {
-	    FILE *out = *fof;
+	    FILE *out = *failure_or_file;
             xfile_created_ = true;
 
             if (fputs_failed(fputs("\001h-----\n", out)))
@@ -651,10 +651,10 @@ sccs_file::update()
       return false;
     }
 
-  cssc::FailureOr<FILE*> fof = start_update();
-  if (!fof.ok())
+  cssc::FailureOr<FILE*> failure_or_file = start_update();
+  if (!failure_or_file.ok())
     return false;               // don't start writing the x-file.
-  FILE *out = *fof;
+  FILE *out = *failure_or_file;
 
   if (!write(out).ok())
     {

@@ -110,7 +110,7 @@ public:
   // get from "get -p s.foo").  It's used by prs, delta and so forth,
   // as well as sccs_file::get().
   cssc::Failure do_get(const std::string& gname, class seq_state &state,
-		       struct subst_parms &parms,
+		       struct subst_parms &substitution_parameters,
 		       bool do_kw_subst,
 		       int show_sid, int show_module, int debug,
 		       bool no_decode, bool for_edit);
@@ -293,9 +293,9 @@ private:
   cssc::Failure print_subsituted_flags_list(FILE *out, const char* separator) const;
   static bool is_known_keyword_char(char c);
 
-  cssc::FailureOr<bool> emit_keyletter_expansion(FILE *out, struct subst_parms *parms, const delta& d, char c) const;
+  cssc::FailureOr<bool> emit_keyletter_expansion(FILE *out, struct subst_parms *substitution_parameters, const delta& d, char c) const;
   cssc::Failure write_subst(const char *start,
-			    struct subst_parms *parms,
+			    struct subst_parms *substitution_parameters,
 			    struct delta const& gotten_delta,
 			    bool force_expansion) const;
 

@@ -57,7 +57,7 @@ static bool expand_keyletter(char which, const std::set<char>& expanded)
 
 
 cssc::FailureOr<bool>
-sccs_file::emit_keyletter_expansion(FILE *out, struct subst_parms *parms, const delta& d, char c) const
+sccs_file::emit_keyletter_expansion(FILE *out, struct subst_parms *substitution_parameters, const delta& d, char c) const
 {
   // We need to expand the keyletter.
 #define RETURN_IF_ERROR(expression) do { cssc::Failure f = (expression); if (!f.ok()) { return f;  } } while(0)
@@ -92,15 +92,15 @@ sccs_file::emit_keyletter_expansion(FILE *out, struct subst_parms *parms, const 
       return false;
 
     case 'D':
-      RETURN_IF_ERROR(parms->now.printf(out, 'D'));
+      RETURN_IF_ERROR(substitution_parameters->now.printf(out, 'D'));
       return false;
 
     case 'H':
-      RETURN_IF_ERROR(parms->now.printf(out, 'H'));
+      RETURN_IF_ERROR(substitution_parameters->now.printf(out, 'H'));
       return false;
 
     case 'T':
-      RETURN_IF_ERROR(parms->now.printf(out, 'T'));
+      RETURN_IF_ERROR(substitution_parameters->now.printf(out, 'T'));
       return false;
 
     case 'E':
@@ -155,7 +155,7 @@ sccs_file::emit_keyletter_expansion(FILE *out, struct subst_parms *parms, const 
 
     case 'C':
       ERRNO_ERROR_IF_NONZERO(printf_failed(fprintf(out, "%u",
-						   parms->out_lineno)));
+						   substitution_parameters->out_lineno)));
       return false;
 
     case 'Z':
@@ -168,7 +168,7 @@ sccs_file::emit_keyletter_expansion(FILE *out, struct subst_parms *parms, const 
 
     case 'W':
       {
-	cssc::optional<std::string> saved_wstring = parms->wstring;
+	cssc::optional<std::string> saved_wstring = substitution_parameters->wstring;
 	if (!saved_wstring.has_value())
 	  {
 	    /* At some point I had been told that SunOS 4.1.4
@@ -204,16 +204,16 @@ sccs_file::emit_keyletter_expansion(FILE *out, struct subst_parms *parms, const 
 	else
 	  {
 	    /* protect against recursion */
-	    parms->wstring = cssc::optional<std::string>();
+	    substitution_parameters->wstring = cssc::optional<std::string>();
 	  }
 	ASSERT(saved_wstring.has_value());
 	cssc::Failure recursed = write_subst(saved_wstring.value().c_str(),
-					     parms, d, true);
+					     substitution_parameters, d, true);
 	if (!recursed.ok())
 	  return recursed;
-	if (!parms->wstring.has_value())
+	if (!substitution_parameters->wstring.has_value())
 	  {
-	    parms->wstring = saved_wstring;
+	    substitution_parameters->wstring = saved_wstring;
 	  }
       }
       return false;
@@ -222,7 +222,7 @@ sccs_file::emit_keyletter_expansion(FILE *out, struct subst_parms *parms, const 
       {
 	cssc::Failure recursed = write_subst("%Z""%%Y""% %M""% %I"
 					     "%%Z""%",
-					     parms, d, true);
+					     substitution_parameters, d, true);
 	if (!recursed.ok())
 	  return recursed;
 	return false;
@@ -239,11 +239,11 @@ sccs_file::emit_keyletter_expansion(FILE *out, struct subst_parms *parms, const 
    Returns true if an error occurs. */
 cssc::Failure
 sccs_file::write_subst(const char *start,
-                       struct subst_parms *parms,
+                       struct subst_parms *substitution_parameters,
                        const delta& d,
 		       bool force_expansion) const
 {
-  FILE *out = parms->out;
+  FILE *out = substitution_parameters->out;
 
   const char *percent = strchr(start, '%');
   while (percent != NULL)
@@ -280,7 +280,7 @@ sccs_file::write_subst(const char *start,
 	    }
 	  percent += 3;
 
-	  cssc::FailureOr<bool> done = emit_keyletter_expansion(out, parms, d, c);
+	  cssc::FailureOr<bool> done = emit_keyletter_expansion(out, substitution_parameters, d, c);
 	  if (!done.ok())
 	    return done.fail();
 
@@ -292,7 +292,7 @@ sccs_file::write_subst(const char *start,
 	    }
 	  else
 	    {
-	      parms->found_id = 1;
+	      substitution_parameters->found_id = 1;
 	    }
 	  start = percent;
 	}

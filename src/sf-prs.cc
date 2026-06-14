@@ -608,13 +608,13 @@ sccs_file::print_delta_key(FILE *out_file,
 	case KEY2('G','B'):
 	{
 	  std::string gname = "standard output";
-	  struct subst_parms parms(gname, get_module_name(), out,
+	  struct subst_parms substitution_parameters(gname, get_module_name(), out,
 				   cssc::optional<std::string>(),
 				   delta_table_->delta_at_seq(d.seq()),
 				   0, sccs_date());
 	  class seq_state state(highest_delta_seqno());
 	  prepare_seqstate(state, d.seq(), sid_list(), sid_list(), sccs_date());
-	  return do_get(gname, state, parms, true, 0, 0, 0, false, false);
+	  return do_get(gname, state, substitution_parameters, true, 0, 0, 0, false, false);
 	}
 
 	case KEY1('W'):

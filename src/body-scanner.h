@@ -66,7 +66,7 @@ public:
 						bool force_expansion)> write_subst,
 		    cssc::Failure (*outputfn)(FILE*,const cssc_linebuf*),
 		    bool encoded,
-		    class seq_state &state, struct subst_parms &parms,
+		    class seq_state &state, struct subst_parms &substitution_parameters,
 		    bool do_kw_subst, bool debug, bool show_module, bool show_sid);
   delta_result
   delta(const std::string& dname, const std::string& file_to_diff,

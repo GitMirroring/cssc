@@ -448,15 +448,15 @@ main(int argc, char **argv)
 		}
 
               real_file = true;
-	      FailureOr<FILE*> fof = fcreate(gname, mode);
-              if (!fof.ok())
+	      FailureOr<FILE*> failure_or_file = fcreate(gname, mode);
+              if (!failure_or_file.ok())
                 {
 		  out = NULL;
-		  errormsg("%s", fof.to_string().c_str());
+		  errormsg("%s", failure_or_file.to_string().c_str());
                   retval = 1;
                   continue;     // with next file....
                 }
-	      out = *fof;
+	      out = *failure_or_file;
             }
 
 	  FILE *summary_file = NULL;
@@ -465,8 +465,8 @@ main(int argc, char **argv)
 	      if (create_lfile)
 		{
 		  std::string lname = name.lfile();
-		  FailureOr<FILE*> fof = fcreate(lname, CREATE_READ_ONLY);
-		  if (!fof.ok())
+		  FailureOr<FILE*> failure_or_file = fcreate(lname, CREATE_READ_ONLY);
+		  if (!failure_or_file.ok())
 		    {
 		      // XXX: This would probably be surprising to the
 		      // user (compared with the alternative of faling
@@ -476,7 +476,7 @@ main(int argc, char **argv)
 		    }
 		  else
 		    {
-		      summary_file = *fof;
+		      summary_file = *failure_or_file;
 		    }
 		}
 	      else
@@ -715,12 +715,12 @@ sccs_file::get(FILE *out, const std::string& gname,
   // passed as a parameter to the substitution function.
   // (eugh...)
   // Changed to use dparm not d to deal with Cutoff Date (Mark Fortescue)
-  struct subst_parms parms(gname, get_module_name(),
+  struct subst_parms substitution_parameters(gname, get_module_name(),
 			   out, wstring, *dparm,
                            0, sccs_date::now());
 
 
-  cssc::Failure got = do_get(gname, state, parms, keywords, show_sid, show_module, debug,
+  cssc::Failure got = do_get(gname, state, substitution_parameters, keywords, show_sid, show_module, debug,
 			     false, false);
   if (!got.ok())
     {
@@ -730,7 +730,7 @@ sccs_file::get(FILE *out, const std::string& gname,
 
   // only issue a warning about there being no keywords
   // substituted, IF keyword substitution was being done.
-  if (keywords && !parms.found_id)
+  if (keywords && !substitution_parameters.found_id)
     {
       no_id_keywords(name_.c_str());
       // this function normally returns.
@@ -738,7 +738,7 @@ sccs_file::get(FILE *out, const std::string& gname,
 
   /* Set the return status. */
   struct get_status goodstatus;
-  goodstatus.lines = parms.out_lineno;
+  goodstatus.lines = substitution_parameters.out_lineno;
 
   seq_no seq;
   for(seq = 1; seq <= highest_delta_seqno(); seq++)

@@ -82,11 +82,11 @@ sccs_file::rmdel(sid id)
 
   d->set_type('R');
 
-  cssc::FailureOr<FILE*> fof = start_update();
-  if (!fof.ok())
-    return fof.fail();
-  ASSERT(*fof != NULL);
-  FILE *out = *fof;
+  cssc::FailureOr<FILE*> failure_or_file = start_update();
+  if (!failure_or_file.ok())
+    return failure_or_file.fail();
+  ASSERT(*failure_or_file != NULL);
+  FILE *out = *failure_or_file;
 
   cssc::Failure written = write(out);
   if (!written.ok())

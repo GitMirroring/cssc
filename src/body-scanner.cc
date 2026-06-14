@@ -87,7 +87,7 @@ sccs_file_body_scanner::get(const std::string& gname,
 			    cssc::Failure (*outputfn)(FILE*,const cssc_linebuf*),
 			    bool encoded,
 			    class seq_state &state,
-			    struct subst_parms &parms,
+			    struct subst_parms &substitution_parameters,
 			    bool do_kw_subst, bool /*debug*/, bool show_module, bool show_sid)
 {
   const seq_no highest_delta_seqno = delta_table.highest_seqno();
@@ -124,7 +124,7 @@ sccs_file_body_scanner::get(const std::string& gname,
   unsigned short first_delta = strict_atous(here(), plinebuf->c_str() + 3);
   state.start(first_delta, 'I'); /* 'I' means "insert". */
 
-  FILE *out = parms.out;
+  FILE *out = substitution_parameters.out;
 
   while (1) {
     fol = read_line();
@@ -143,10 +143,10 @@ sccs_file_body_scanner::get(const std::string& gname,
 	  continue;
 	}
 
-      parms.out_lineno++;
+      substitution_parameters.out_lineno++;
 
       if (show_module)
-        fprintf(out, "%s\t", parms.get_module_name().c_str());
+        fprintf(out, "%s\t", substitution_parameters.get_module_name().c_str());
 
       if (show_sid)
         {
@@ -157,7 +157,7 @@ sccs_file_body_scanner::get(const std::string& gname,
         }
       if (do_kw_subst && !encoded)
 	{
-	  cssc::Failure wrote = write_subst(plinebuf->c_str(), parms.delta, false);
+	  cssc::Failure wrote = write_subst(plinebuf->c_str(), substitution_parameters.delta, false);
 	  if (!wrote.ok())
 	    {
 	      wrote = cssc::make_failure_builder(wrote)
@@ -175,8 +175,8 @@ sccs_file_body_scanner::get(const std::string& gname,
 	{
 	  if (!do_kw_subst)
 	    {
-	      if (!parms.found_id && plinebuf->check_id_keywords())
-		  parms.found_id = 1;
+	      if (!substitution_parameters.found_id && plinebuf->check_id_keywords())
+		  substitution_parameters.found_id = 1;
 	    }
 	  cssc::Failure wrote = outputfn(out, plinebuf.get());
 	  if (!wrote.ok())
