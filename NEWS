@@ -3,6 +3,18 @@ New in CSSC-1.5.0-rc3, 2026-06-14
         * admin now supports combination of -r with -n as well as the
           portable combination of -r with -i.
 
+        * Support "sccs sact"; the sact program already existed but
+	  could not previously be invoked via the sccs wrapper.
+	  Thanks to Greg A. Woods for this improvement.
+
+        * In some places we now prefer "grep -E" to "egrep" in order
+          to avoid a warning message from GNU grep.  Some very old
+          versions of Unix may not support this option.
+
+        * Various C++ portability improvements.
+
+	* Updated version of gnulib.
+
 New in CSSC-1.5.0-rc2, 2024-05-13
 
 	 * This release is more careful to detect I/O failures when
