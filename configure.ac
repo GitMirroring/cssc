@@ -330,26 +330,6 @@ AC_TYPE_MODE_T
 AC_TYPE_PID_T
 AC_TYPE_UID_T
 
-dnl AC_CHECK_DECL_IN_HEADER(IDENTIFIER, HEADERS)
-AC_DEFUN([AC_CHECK_DECL_IN_HEADER],
-[AC_MSG_CHECKING(for $1 in $2)
-ac_tr_ident=`echo $1 | tr '.abcdefghijklmnopqrstuvwxyz' '_ABCDEFGHIJKLMNOPQRSTUVWXYZ'`
-ac_tr_header=`echo $2 | tr '.abcdefghijklmnopqrstuvwxyz' '_ABCDEFGHIJKLMNOPQRSTUVWXYZ'`
-ac_tr_define=${ac_tr_header}_DECLARES_${ac_tr_ident}
-AC_CACHE_VAL(ac_cv_decl_$ac_tr_define,
-[AC_EGREP_HEADER([$1], [$2],
-eval "ac_cv_decl_$ac_tr_define=yes",
-eval "ac_cv_decl_$ac_tr_define=no")])dnl
-if eval "test \"`echo '$ac_cv_decl_'$ac_tr_define`\" = yes"; then
-	 AC_MSG_RESULT(yes)
-	 # echo 'defining' $ac_tr_define
-	 AC_DEFINE_UNQUOTED($ac_tr_define,1,Define if we have header file $1)
-else
-	 # echo 'NOT defining' $ac_tr_define
-	 AC_MSG_RESULT(no)
-fi
-])
-
 dnl Deductions from proprocessor macros...
 AC_MSG_CHECKING([for _POSIX_SAVED_IDS])
 AC_CACHE_VAL(cssc_cv_sys_savedids_set,
