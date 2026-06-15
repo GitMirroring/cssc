@@ -10,7 +10,7 @@
 # file.
 # So please don't run the test suite as root, because it will spuriously
 # fail.
-true 
+true
 . ../common/not-root
 
 
@@ -24,7 +24,7 @@ true
 # We want to prevent setlocale(LC_ALL, "") failing:
 unset LANG
 
-# We assume that all the files we want to work on are in the 
+# We assume that all the files we want to work on are in the
 # current directory.
 unset PROJECTDIR
 
@@ -32,23 +32,23 @@ unset PROJECTDIR
 remove command.log log log.stdout log.stderr SCCS
 mkdir SCCS 2>/dev/null
 
-g=tfile 
-s=SCCS/s.${g} 
-p=SCCS/p.${g} 
-x=SCCS/x.${g} 
-z=SCCS/z.${g}
-remove $s $p $g $x $z
+g=tfile
+s="SCCS/s.${g}"
+p="SCCS/p.${g}"
+x="SCCS/x.${g}"
+z="SCCS/z.${g}"
+remove "${s}" "${p}" "${g}" "${x}" "${z}"
 
 echo "Using the driver program ${sccs}"
 
 
 # Create the input file.
-cat > $g <<EOF
+cat > "${g}" <<EOF
 %M%: This is a test file containing nothing interesting.
 EOF
 
 #
-# Creating the s-file. 
+# Creating the s-file.
 #
 # Create the s-file the traditional way...
 docommand a1 "${vg_sccs} admin -i$g $s" 0 \
@@ -62,7 +62,7 @@ docommand a4 "test -f $s"  0 "" ""
 
 # Check the backup file still exists.
 docommand a5 "test -f ,$g" 0 "" ""
-remove ,$g
+remove ",${g}"
 
 #
 # Making deltas.
@@ -72,17 +72,17 @@ remove ,$g
 docommand b1 "${vg_sccs} get -e $s" 0 \
     "1.1\nnew delta 1.2\n1 lines\n"                 IGNORE
 
-echo "hello" >>$g
+echo "hello" >>"${g}"
 docommand b2 "${vg_sccs} delta -y\"\" $s" 0 \
     "1.2\n1 inserted\n0 deleted\n1 unchanged\n"     IGNORE
 
 
-# Now with edit and delget.    
+# Now with edit and delget.
 docommand b3 "${vg_sccs} edit $s"  0 \
     "1.2\nnew delta 1.3\n2 lines\n"                 IGNORE
 
 
-echo "there" >>$g
+echo "there" >>"${g}"
 docommand b4 "${vg_sccs} deledit -y'' $s" IGNORE \
  "1.3\n1 inserted\n0 deleted\n2 unchanged\n1.3\nnew delta 1.4\n" \
  IGNORE
@@ -90,7 +90,7 @@ docommand b4 "${vg_sccs} deledit -y'' $s" IGNORE \
 docommand b5 "test -w $g" 0 "" ""
 
 
-echo '%A%' >>$g
+echo '%A%' >>"${g}"
 docommand b6 "${vg_sccs} delget -y'' $s" 0 \
  "1.4\n1 inserted\n0 deleted\n3 unchanged\n1.4\n4 lines\n" \
  IGNORE
@@ -133,9 +133,9 @@ docommand d3 "${vg_sccs} get -p -r1.3 $s" 0 IGNORE "1.3\n3 lines\n"
 docommand e1 "${vg_sccs} what $g" 0 "${g}:\n\t ${g} 1.4@(#)\n" ""
 
 
-# 
+#
 # enter
-# 
+#
 remove "foo" ",foo" "SCCS/s.foo"
 echo "%Z%" >foo
 docommand f1 "test -f ,foo" 1 "" ""
@@ -146,7 +146,7 @@ remove ",foo"
 
 #
 # clean
-# 
+#
 docommand g1 "${vg_sccs} edit SCCS/s.foo" 0 \
 				    "1.1\nnew delta 1.2\n1 lines\n" ""
 
@@ -162,7 +162,7 @@ docommand g8 "test -f foo"   0 "" ""
 docommand g9 "test -w foo"   0 "" ""
 
 #
-# unedit 
+# unedit
 #
 
 case `uname -s 2>/dev/null` in
@@ -200,41 +200,6 @@ docommand j2 "${vg_sccs} edit $s" 0 IGNORE IGNORE
 docommand j3 "${vg_sccs} check" 1 IGNORE ""
 docommand j4 "${vg_sccs} unedit $g" 0 IGNORE IGNORE
 
-
-
-remove {expected,got}.std{out,err} last.command 
-remove $s $p $g $x $z
-success
-
-#
-# Still need to test:-
-
-# cdc, comb, help, prs, prt, val, sccsdiff, diffs, -diff,
-# branch, create
-
-#
-# Tests that would need a canned SCCS file:-
-#
-# print, info
-
-	    
-docommand B6 "${vg_get} -e $s" 0 \
-    "1.3\nnew delta 1.4\n2 lines\n"                 IGNORE
-cp test/passwd.4 passwd
-docommand B7 "${vg_delta} -y'' $s" 0 \
-    "1.4\n1 inserted\n1 deleted\n1 unchanged\n"     IGNORE
-docommand B8 "${vg_get} -e $s" 0 \
-    "1.4\nnew delta 1.5\n2 lines\n"                 IGNORE
-cp test/passwd.5 passwd
-docommand B9 "${vg_delta} -y'' $s" 0 \
-    "1.5\n1 inserted\n1 deleted\n1 unchanged\n"     IGNORE
-docommand B10 "${vg_get} -e -r1.3 $s" 0 \
-    "1.3\nnew delta 1.3.1.1\n2 lines\n"             IGNORE
-cp test/passwd.6 passwd
-docommand B11 "${vg_delta} -y'' $s" 0 \
-    "1.3.1.1\n1 inserted\n1 deleted\n1 unchanged\n" IGNORE
-
-rm -rf test
-remove passwd command.log $s $g $x $z $p SCCS
-rm -rf SCCS
+remove {expected,got}.std{out,err} last.command
+remove "${s}" "${p}" "${g}" "${x}" "${z}" SCCS
 success

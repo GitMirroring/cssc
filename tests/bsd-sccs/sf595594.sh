@@ -27,7 +27,7 @@ echo "Using the driver program ${sccs}"
 cleanup_abc_files() {
     for base in a b c
     do
-	rm -f -- [spzd]."${base}"
+	rm -f -- [spzd]."${base}" "${base}"
     done
 }
 
