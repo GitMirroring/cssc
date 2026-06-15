@@ -48,3 +48,4 @@ Makefile
 /stamp-h1
 TAGS
 README-release
+/.dir-locals.el
