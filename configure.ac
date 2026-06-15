@@ -398,31 +398,6 @@ else
 	AC_CHECK_FUNCS(fork)
 fi
 
-
-AC_DEFUN([AC_CHECK_GLOBAL],
-[
-# JY: AC_CHECK_GLOBAL begins
-for ac_global in $1
-do
-   ac_tr_global=HAVE_`echo $ac_global | tr 'abcdefghijklmnopqrstuvwxyz' 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'`
-   AC_MSG_CHECKING([for global variable ${ac_global}])
-   AC_CACHE_VAL(ac_cv_global_$ac_global,
-   [
-    AC_LINK_IFELSE([AC_LANG_PROGRAM([[dnl
-    /* no includes */]], [[ extern long int $ac_global;  exit((int)$ac_global)]])],[eval "ac_cv_global_${ac_global}=yes"],[eval "ac_cv_global_${ac_global}=no"
-    ])
-   ]
-   )
-  if eval "test \"`echo '$ac_cv_global_'$ac_global`\" = yes"; then
-    AC_MSG_RESULT(yes)
-    AC_DEFINE_UNQUOTED($ac_tr_global,1,Define if the global variable $ac_global is available)
-  else
-    AC_MSG_RESULT(no)
-  fi
-done
-# JY: AC_CHECK_GLOBAL ends
-])
-
 dnl Enable some warnings, or not.
 want_warnings=no
 AC_ARG_ENABLE([warnings],
