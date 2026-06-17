@@ -1,4 +1,4 @@
-New in CSSC-1.5.0-rc3, 2026-06-14
+* Noteworthy changes in release 1.5.0-rc3 (2026-06-14)
 
         * Some typos in error message have been fixed.
 
@@ -20,7 +20,7 @@ New in CSSC-1.5.0-rc3, 2026-06-14
 	* Updated version of googletest; this is now at the last
           version at which it still supported building with Automake.
 
-New in CSSC-1.5.0-rc2, 2024-05-13
+* Noteworthy changes in release 1.5.0-rc2 (2024-05-13)
 
 	 * This release is more careful to detect I/O failures when
            writing to stdout in prs and prt.
@@ -32,7 +32,7 @@ New in CSSC-1.5.0-rc2, 2024-05-13
 
 	 * Updated versions of gnulib and googletest.
 
-New in CSSC-1.4.1, 2019-05-07
+* Noteworthy changes in release 1.4.1 (2019-05-07)
 
          * This release - and future releases - of CSSC must be
            compiled with a C++ compiler that supports the 2011
@@ -46,7 +46,7 @@ New in CSSC-1.4.1, 2019-05-07
          * This release is based on updated versions of gnulib and of
           the googletest unit test framework.
 
-New in CSSC-1.4.0, 2014-07-11
+* Noteworthy changes in release 1.4.0 (2014-07-11)
 
          * New stable release, almost identical to the test release
            1.3.2 - the only changes are version numbering and updates
@@ -54,7 +54,7 @@ New in CSSC-1.4.0, 2014-07-11
            release was 1.3.0, so the following two sections of this
            file set out what has changed since 1.3.0.
 
-New in CSSC-1.3.2, 2014-06-30
+* Noteworthy changes in release 1.3.2 (2014-06-30)
 
         * This release is based on updated versions of gnulib and of
           the googletest unit test framework (the test framework is of
@@ -75,7 +75,7 @@ New in CSSC-1.3.2, 2014-06-30
         * Fix Savannah bug 33633, prs -d":GB:" coredumps when
           expanding %I%.
 
-New in CSSC-1.3.1, 2011-05-10
+* Noteworthy changes in release 1.3.1 (2011-05-10)
 
         * prs now prints ignored deltas when expanding the :DI:
           keyword.  The expansion of :DI: varies between SCCS
@@ -109,12 +109,12 @@ New in CSSC-1.3.1, 2011-05-10
           better with OpenSolaris 2009.06 but it is a
           backward-incompatible change.
 
-New in CSSC-1.3.0, 2010-11-07
+* Noteworthy changes in release 1.3.0 (2010-11-07)
 
         * This release is identical to CSSC-1.3.0rc1 apart from the
           version number.
 
-New in CSSC-1.3.0rc1, 2010-05-16
+* Noteworthy changes in release 1.3.0rc1 (2010-05-16)
 
         * The CSSC manual is now published under version 1.3 of the
           GNU Free Documentation License.
@@ -142,12 +142,12 @@ New in CSSC-1.3.0rc1, 2010-05-16
 	* The configure script now supports a new option
           "--enable-warnings" which enables many GCC warning options.
 
-New in CSSC-1.2.0, 2009-04-11
+* Noteworthy changes in release 1.2.0 (2009-04-11)
 
 	* This stable release is almost identical to the 1.1.1 test
           release; there are no functional changes.
 
-New in CSSC-1.1.1, 2008-01-18
+* Noteworthy changes in release 1.1.1 (2008-01-18)
 
 	* Updated the NEWS file to give estimated release dates
 	  and user-visible changes for ancient releases.
@@ -166,7 +166,7 @@ New in CSSC-1.1.1, 2008-01-18
 	  generating an error when CSSC tries to open the directory as
 	  a file).
 
-New in CSSC-1.1.0, 2007-12-17
+* Noteworthy changes in release 1.1.0 (2007-12-17)
 
 	* GNU CSSC is now distributed under version 3 of the GNU General
 	  Public License.  The documentation is distributed under
@@ -190,7 +190,7 @@ New in CSSC-1.1.0, 2007-12-17
 
 	* Compilation fixes for Darwin
 
-New in CSSC-1.0.1, 2005-01-22
+* Noteworthy changes in release 1.0.1 (2005-01-22)
 
 	* "admin -h" now actually validates the SCCS file.
           (SourceForge bug 1043880)
@@ -209,7 +209,7 @@ New in CSSC-1.0.1, 2005-01-22
 	  revision has already been reserved by a previous "get -e".
           This is now fixed.  (SourceForge bug 865422).
 
-New in CSSC-1.00, 2004-10-10
+* Noteworthy changes in release 1.00 (2004-10-10)
 
 	* We now support the "x" (make g-file executable) and "y"
 	  (limit keyword expansion) SCCS file flags.  These are SCO
@@ -230,7 +230,7 @@ New in CSSC-1.00, 2004-10-10
 
 	* Better handling of the archive bit on Windows systems.
 
-New in CSSC-0.16alpha-pl0, 2003-12-07
+* Noteworthy changes in release 0.16alpha-pl0 (2003-12-07)
 
 	* We now honour the user's choice of umask (which fixes
 	  SourceForge bug number 581740).
@@ -246,7 +246,7 @@ New in CSSC-0.16alpha-pl0, 2003-12-07
 
 	* "get -e" now takes notice of the value of the "d" flag.
 
-New in CSSC-0.15alpha-pl0, 2002-12-08 (date from SourceForge)
+* Noteworthy changes in release 0.15alpha-pl0 (2002-12-08) (date from SourceForge)
 
 	* Reduced the number of lines of code not tested by the test suite to
           2083.
@@ -279,7 +279,7 @@ New in CSSC-0.15alpha-pl0, 2002-12-08 (date from SourceForge)
 
 	* Upgraded to autoconf version 2.53.
 
-New in CSSC-0.14alpha-pl0, 2002-04-03
+* Noteworthy changes in release 0.14alpha-pl0 (2002-04-03)
 
 	* Added Richard Kettlewell's sccs.cgi CGI script.
 
@@ -333,7 +333,7 @@ New in CSSC-0.14alpha-pl0, 2002-04-03
 
 	* Moved old ChangeLog to ChangeLog.2.
 
-New in CSSC-0.13alpha-pl1, 2001-11-25
+* Noteworthy changes in release 0.13alpha-pl1 (2001-11-25)
 
 	* get -e should reuse deltas that have been removed
 	  (SF bug ID 450900, new test case tests/get/removed-delta.sh)
@@ -359,7 +359,7 @@ New in CSSC-0.13alpha-pl1, 2001-11-25
 	* Small changes to prt output format (reserved usr list header
           and extra spaces at beginning and end of line).
 
-New in CSSC-0.13alpha-pl0, 2001-09-23
+* Noteworthy changes in release 0.13alpha-pl0 (2001-09-23)
 
 	* CSSC should now build with GCC version 3.
 
@@ -378,7 +378,7 @@ New in CSSC-0.13alpha-pl0, 2001-09-23
 	  "j" flag now actually works instead of causing a coredump).
 	  (This was SourceForge bug #439146).
 
-New in CSSC-0.12alpha-pl0, 2001-07-08
+* Noteworthy changes in release 0.12alpha-pl0 (2001-07-08)
 
  	* Updated BSD license & documentation to remove advertising clause
 	  (Thanks to Janet Casey and Richard Stallman for reminding me
@@ -418,7 +418,7 @@ New in CSSC-0.12alpha-pl0, 2001-07-08
   	* Do correct clean up if we get SIGINT while waiting for user
           input (e.g. MRs)
 
-New in CSSC-0.11alpha-pl4, 2000-06-18
+* Noteworthy changes in release 0.11alpha-pl4 (2000-06-18)
 
 	* delta now accepts list of MRs on input even if the input is
 	  not a TTY since allegedly other implementations do this.
@@ -442,7 +442,7 @@ New in CSSC-0.11alpha-pl4, 2000-06-18
 	  setuid.  (See the manual for remarks about setuid
 	  operation).
 
-New in CSSC-0.11alpha-pl3, 1999-06-27
+* Noteworthy changes in release 0.11alpha-pl3 (1999-06-27)
 
         * Portability fixes for SunOS 4.1.3, Ultrix 4.2, IRIX 6.5.
 
@@ -450,7 +450,7 @@ New in CSSC-0.11alpha-pl3, 1999-06-27
 
 	* Better log messages when (e.g.) get fails to open the s.file
 
-New in CSSC-0.11alpha-pl2, 1999-06-21
+* Noteworthy changes in release 0.11alpha-pl2 (1999-06-21)
 
 	* texinfo.tex is now included in the distribution, since
           automake likes this to be so.
@@ -458,7 +458,7 @@ New in CSSC-0.11alpha-pl2, 1999-06-21
   	* We no longer rely on the STL <list> header (neither did any
           version before CSSC-0.11alpha-pl1).
 
-New in CSSC-0.11alpha-pl1, 1999-04-18
+* Noteworthy changes in release 0.11alpha-pl1 (1999-04-18)
 
 	* Note that this is an ALPHA release.  If you want a BETA
           release, use 0.10beta.pl1 instead.
@@ -473,28 +473,28 @@ New in CSSC-0.11alpha-pl1, 1999-04-18
           excluded lists of deltas from the p-file (these are put
           there by "get -e -x -i").
 
-New in CSSC-0.11alpha-pl0, 1999-04-18
+* Noteworthy changes in release 0.11alpha-pl0 (1999-04-18)
 
 	* Nothing.  This version never existed -- I made a typo in
 	  configure.in, making  CSSC-0.11alpha-pl1 follow directly from
           CSSC-0.10beta-pl1.
 
-New in CSSC-0.10beta-pl1, 1999-03-21
+* Noteworthy changes in release 0.10beta-pl1 (1999-03-21)
 
 	* Eliminated some compiler warnings for bsd/sccs.c; added
           CREDITS.short.txt.  No other significant user-visible changes.
 
-New in CSSC-0.10beta-pl0, 1999-03-20
+* Noteworthy changes in release 0.10beta-pl0 (1999-03-20)
 
 	* Support for C++ compilers other than GNU C++.
 
-New in CSSC-0.09alpha-pl4, 1999-03-15
+* Noteworthy changes in release 0.09alpha-pl4 (1999-03-15)
 
 	* The -p option of delta has been implemented.
 
 	* Fixed "sccs sccsdiff" (bug report by Achim Hoffmann).
 
-New in CSSC-0.09alpha-pl3, 1999-03-13
+* Noteworthy changes in release 0.09alpha-pl3 (1999-03-13)
 
 	* You can specify a full SID in the argument for the -r option
           of admin.  Some SCCS implementations allow this, and others
@@ -507,7 +507,7 @@ New in CSSC-0.09alpha-pl3, 1999-03-13
 	  testing C compilers, and apparently fails on standard-compliant
 	  C++ implementations.
 
-New in CSSC-0.09alpha-pl2, 1998-12-10
+* Noteworthy changes in release 0.09alpha-pl2 (1998-12-10)
 
 	* I have upgraded my C++ compiler to EGCS 1.0.3, and there are
 	  related modifications (presumably for better standard
@@ -533,7 +533,7 @@ New in CSSC-0.09alpha-pl2, 1998-12-10
 	  happen.
 
 
-New in CSSC-0.09alpha-pl1, 1998-11-13
+* Noteworthy changes in release 0.09alpha-pl1 (1998-11-13)
 
 	* We now correctly return an exit status of 1 when we run out
           of disk space in get or prs.
@@ -550,12 +550,12 @@ New in CSSC-0.09alpha-pl1, 1998-11-13
 	  suite.
 
 
-New in CSSC-0.09alpha-pl0, 1998-08-13
+* Noteworthy changes in release 0.09alpha-pl0 (1998-08-13)
 
 	* We now handle failures in a different way; quit() will
 	  throw an exception on those systems that support them.
 
-New in CSSC-0.08alpha-pl1, 1998-06-19
+* Noteworthy changes in release 0.08alpha-pl1 (1998-06-19)
 
 	* Documented the possible exit values in the manpage for sccs.
 
@@ -563,7 +563,7 @@ New in CSSC-0.08alpha-pl1, 1998-06-19
 
 	* Avoids compilation error for sccs.c on Solaris.
 
-New in CSSC-0.08alpha-pl0, 1998-06-16 (date from tar file)
+* Noteworthy changes in release 0.08alpha-pl0 (1998-06-16) (date from tar file)
 
 	* The program now works on systems with no <string> header
 	  file.  Previously existing support for this situation had a
@@ -588,7 +588,7 @@ New in CSSC-0.08alpha-pl0, 1998-06-16 (date from tar file)
 	  eventually exits with the wrong error level.  There may even
 	  be cases where the program now continues when it should not.
 
-New in CSSC-0.07alpha-pl3, 1998-06-10
+* Noteworthy changes in release 0.07alpha-pl3 (1998-06-10)
 
 	* Corrected RPM spec file.
 
@@ -597,11 +597,11 @@ New in CSSC-0.07alpha-pl3, 1998-06-10
 	* Ensure the test suite is not run by root (because
 	  "test -w" gives misleading results for root).
 
-New in CSSC-0.07alpha-pl2, 1998-06-09
+* Noteworthy changes in release 0.07alpha-pl2 (1998-06-09)
 
 	* Bugfixes for Sun Code Manager compatibility.
 
-New in CSSC-0.07alpha-pl1, 1998-06-08
+* Noteworthy changes in release 0.07alpha-pl1 (1998-06-08)
 
 	* get: eliminated spurious warning about keyword expansion and
 	  binary files.
@@ -613,7 +613,7 @@ New in CSSC-0.07alpha-pl1, 1998-06-08
 
 	* Small correction to test suite entry for prt.
 
-New in CSSC-0.07alpha-pl0, 1998-06-06
+* Noteworthy changes in release 0.07alpha-pl0 (1998-06-06)
 
 	* "get -e" should now (again) reuse deltas that have been
            removed with rmdel.
@@ -630,39 +630,39 @@ New in CSSC-0.07alpha-pl0, 1998-06-06
 	* Added options --cssc, --prefix, --version and -V to sccs(1)
           and documented them in its manual page.
 
-New in CSSC-0.06alpha-pl8, unreleased
+* Noteworthy changes in release 0.06alpha-pl8 ()unreleased
 
 	* Fixed some compilation warnings.
 
 	* Fixed the formatting of MR numbers in prt.
 
-New in CSSC-0.06alpha-pl7, 1998-05-08
+* Noteworthy changes in release 0.06alpha-pl7 (1998-05-08)
 
 	* Fixed bug with ignored deltas that manifested when
 	  working with SCCS files produced by Sun's "Code
 	  Manager" product.
 
-New in CSSC-0.06alpha-pl6, 1998-05-04
+* Noteworthy changes in release 0.06alpha-pl6 (1998-05-04)
 
 	* Included the BSD sccs.c program for the first time.
           It has not been tested.  It's work-in-progress.
 
 	* The "-t" option of the "get" command is now implemented.
 
-New in CSSC-0.06alpha-pl5, 1998-03-11
+* Noteworthy changes in release 0.06alpha-pl5 (1998-03-11)
 
 	* Bugfix for rmdel; it now no longer corrupts the SCCS file
   	  it operates on (previously all the delta control lines had
 	  been stripped out).
 
-New in CSSC-0.06alpha-pl4, 1998-03-10
+* Noteworthy changes in release 0.06alpha-pl4 (1998-03-10)
 
 	* admin's -n and -i options now work correctly with absolute
 	  pathnames.
 
 	* Fixes for support of SCCS files whose names contain a space.
 
-New in CSSC-0.06alpha-pl3, 1998-03-01
+* Noteworthy changes in release 0.06alpha-pl3 (1998-03-01)
 
 	* "admin -i" now works when the input file turns out
           to need encoding.  We do not need to be able to seek
@@ -670,14 +670,14 @@ New in CSSC-0.06alpha-pl3, 1998-03-01
 	  even if the -b option is not given.  We also have tests for
 	  this situation.
 
-New in CSSC-0.06alpha-pl2, 1998-02-23
+* Noteworthy changes in release 0.06alpha-pl2 (1998-02-23)
 
 	* 8-bit input data now works, as ordinary text.  This means that
 	  you can use use CSSC to control revisions of ISO-8859 text
           files without needing to encode them (i.e. using the -b flag
 	  of admin).  SCCS also supports this.
 
-New in CSSC-0.06alpha-pl1, 1998-02-21
+* Noteworthy changes in release 0.06alpha-pl1 (1998-02-21)
 
 	* "get" keywords now sustitute the right values, the ones
 	  corresponding to the delta actually being gotten, not the
@@ -689,13 +689,13 @@ New in CSSC-0.06alpha-pl1, 1998-02-21
 	  not just "get".
 
 
-New in CSSC-0.06alpha-pl0, 1998-02-12
+* Noteworthy changes in release 0.06alpha-pl0 (1998-02-12)
 
 	* Binary file support (with test suite support).
 
 	(release dates of newer releases are reconstructed from CVS tags)
 
-New in CSSC-0.05alpha-pl1, 1998-02-11
+* Noteworthy changes in release 0.05alpha-pl1 (1998-02-11)
 
 	* When root runs "get -e", we used to get a "target file
 	  is writable" error even if the gotten file is NOT writable.
@@ -717,7 +717,7 @@ New in CSSC-0.05alpha-pl1, 1998-02-11
 	* Added manual section explaining when and how branches are
 	  made.
 
-New in CSSC-0.05alpha-pl0, 1998-01-17
+* Noteworthy changes in release 0.05alpha-pl0 (1998-01-17)
 
         * cdc has now been debugged using new test cases.
 
@@ -738,7 +738,7 @@ New in CSSC-0.05alpha-pl0, 1998-01-17
 	* Significant code reorganisation
 
 
-New in CSSC-0.04alpha-pl0, 1997-11-23
+* Noteworthy changes in release 0.04alpha-pl0 (1997-11-23)
 
 	* Fixes for year-2000 compliance.  While previous versions
 	  did in fact work in the year 2000, version 0.04 includes
@@ -756,14 +756,14 @@ New in CSSC-0.04alpha-pl0, 1997-11-23
 
 	* We now use the standard C++ <string> header, if available.
 
-New in CSSC-0.03alpha-pl2, 1997-11-13
+* Noteworthy changes in release 0.03alpha-pl2 (1997-11-13)
 
 	* Really fixed the test case for %P% in tests/get this time.
 
 	* Indicated that GNU make and /bin/posix/sh are required on
 	  HP-UX version 9.
 
-New in CSSC-0.03alpha-pl1, 1997-11-12
+* Noteworthy changes in release 0.03alpha-pl1 (1997-11-12)
 
         * Changed the version number format again.  It's the last
 	  time, I promise.  Probably.
@@ -780,7 +780,7 @@ and no saved copies of any tar archive produced.   I suspect that I never
 made these releases, they were just candidates.  Dates are taken from the
 CVS history).
 
-New in CSSC-devel-0.03a-pl0, 1997-11-10
+* Noteworthy changes in release devel-0.03a-pl0 (1997-11-10)
 
 	* Fundamental changes, hence new version number.
 
@@ -790,7 +790,7 @@ New in CSSC-devel-0.03a-pl0, 1997-11-10
 
 	* The test suite now has its own chapter in the manual.
 
-New in CSSC-0.02-devel-pl7, 1997-10-07
+* Noteworthy changes in release 0.02-devel-pl7 (1997-10-07)
 
 	* The test scripts now correctly test the %P% keyword.
 
@@ -802,7 +802,7 @@ New in CSSC-0.02-devel-pl7, 1997-10-07
 	  updated on the basis of the timestamps from SourceForge
 	  on 2007-12-22.
 
-New in CSSC-0.02-devel-pl6, 1997-09-27
+* Noteworthy changes in release 0.02-devel-pl6 (1997-09-27)
 
 	* The -m and -n options of get had been the wrong way around.
           This is now fixed.
@@ -814,7 +814,7 @@ New in CSSC-0.02-devel-pl6, 1997-09-27
 	* Fixes to get (keywords %I% %R% %L% %B% %S%, plus
 	  correct substitution when the "-c" option is used).
 
-New in CSSC-0.02-devel-pl5, 1997-07-04
+* Noteworthy changes in release 0.02-devel-pl5 (1997-07-04)
 
 	* FreeBSD support (+ SMP build as a side effect, probably)
 
@@ -822,31 +822,31 @@ New in CSSC-0.02-devel-pl5, 1997-07-04
 
 	* Relocatable info directory.
 
-New in CSSC-0.02-devel-pl4, 1997-06-21
+* Noteworthy changes in release 0.02-devel-pl4 (1997-06-21)
 
 	* The test suite now checks that get will refuse to overwrite a
 	  writable file.
 
 	* The test suite now works on Solaris.
 
-New in CSSC-0.02-devel-pl3, 1997-06-16
+* Noteworthy changes in release 0.02-devel-pl3 (1997-06-16)
 
 	* The test suite now supports systems where "echo -e" produces
 	"-e".
 
 	* Support for some systems which lack some standard C headers.
 
-New in CSSC-0.02-devel-pl2, 1997-06-15
+* Noteworthy changes in release 0.02-devel-pl2 (1997-06-15)
 
 	* The test suite now supports systems where echo -e blah\c works
 	  but echo -e blah\c does not.
 
-New in CSSC-0.02-devel-pl1, 1997-06-14
+* Noteworthy changes in release 0.02-devel-pl1 (1997-06-14)
 
 	* Rephrased the error message that lndir gives when the source and
 	  destination are identical.
 
-New in CSSC-0.02-devel-pl0, 1997-06-13
+* Noteworthy changes in release 0.02-devel-pl0 (1997-06-13)
 
 	* Implemented prt.
 
@@ -859,26 +859,26 @@ New in CSSC-0.02-devel-pl0, 1997-06-13
 
 	* Support for branching
 
-New in CSSC-0.01-devel-pl0, 1997-05-31
+* Noteworthy changes in release 0.01-devel-pl0 (1997-05-31)
 
 	* XXX: release date for this muct be wrong,
 	  CVS shows no changes.
 	  (TODO: just compare the release files?)
 
-New in CSSC-0.01-devel-p9, 1997-05-31
+* Noteworthy changes in release 0.01-devel-p9 (1997-05-31)
 
 	* XXX: release date for this muct be wrong,
 	  CVS shows no changes.
 	  (TODO: just compare the release files?)
 
-New in CSSC-0.01-devel-p8, 1997-05-29
+* Noteworthy changes in release 0.01-devel-p8 (1997-05-29)
 
 	* Changes which first appeared in this release
 	  are actually shown under CSSC-0.01-devel-p7,
 	  because I had to use cvs diff -D.
 	  (TODO: just compare the release files?)
 
-New in CSSC-0.01-devel-p7, 1997-05-29
+* Noteworthy changes in release 0.01-devel-p7 (1997-05-29)
 
 	* Updated the README file from the MySC original.
 
@@ -907,16 +907,16 @@ New in CSSC-0.01-devel-p7, 1997-05-29
 	  file entry contains the changes for them too (this entry
 	  was filled in with the help of cvs diff -D ... -D ...)
 
-New in CSSC-0.01-devel-p3, 1997-04-26
+* Noteworthy changes in release 0.01-devel-p3 (1997-04-26)
 
 	* Switched to using Autoconf to detect the presence of system
 	  header files.
 
-New in CSSC-0.01-devel-p2, 1997-04-20
+* Noteworthy changes in release 0.01-devel-p2 (1997-04-20)
 
 	* This is the first release that contained any code.
 
-New in CSSC-0.01-devel-p1, 1997-04-03
+* Noteworthy changes in release 0.01-devel-p1 (1997-04-03)
 
 	* Initial release; contained only the directory.  I assume
  	  this was a mistake, though I don't remember.

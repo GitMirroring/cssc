@@ -15,10 +15,6 @@ sc_shellcheck:
 
 release_archive_dir = ../..//tarfiles/public-releases/
 
-news-check-regexp = '^New in CSSC-$(VERSION_REGEXP), $(today)'
-news-check-regexp-prev = ^New in CSSC-$(PREV_VERSION_REGEXP), [0-9-]*
-
-
 # Indentation customisation is controlled by indent_args.  We depart
 # from the (GNU) defaults in some small ways.
 indent_args = --no-space-after-function-call-names --dont-break-procedure-type
