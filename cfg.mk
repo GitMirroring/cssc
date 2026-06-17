@@ -15,6 +15,10 @@ sc_shellcheck:
 
 release_archive_dir = ../..//tarfiles/public-releases/
 
+# The CSSC package lives on GNU FTP sites in the directory "cssc", not
+# "CSSC".
+upload_dest_dir_ = cssc
+
 # Indentation customisation is controlled by indent_args.  We depart
 # from the (GNU) defaults in some small ways.
 indent_args = --no-space-after-function-call-names --dont-break-procedure-type
